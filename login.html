@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PMSSS Scholarship Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <span class="logo-p">P</span><span class="logo-m">M</span><span class="logo-s">SSS</span>
+                <span class="logo-subtitle">Scholarship Portal</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="apply.html">APPLY</a></li>
+            <li><a href="status.html">STATUS</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="login.html" class="login-btn active">LOGIN</a></li>
+        </ul>
+    </nav>
+
+    <section class="login-section">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to your PMSSS account</p>
+                </div>
+
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email / Registration Number</label>
+                        <input type="text" id="email" placeholder="Enter your email or registration number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-primary full-width">Login</button>
+                </form>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="alternate-login">
+                    <button class="btn-secondary full-width">Login with OTP</button>
+                </div>
+
+                <div class="signup-prompt">
+                    <p>Don't have an account? <a href="register.html">Register Now</a></p>
+                </div>
+            </div>
+
+            <div class="login-info">
+                <div class="info-box">
+                    <h3>🔐 Secure Login</h3>
+                    <p>Your data is protected with industry-standard encryption</p>
+                </div>
+                <div class="info-box">
+                    <h3>📱 Access Anywhere</h3>
+                    <p>Login from any device to manage your scholarship application</p>
+                </div>
+                <div class="info-box">
+                    <h3>💬 24/7 Support</h3>
+                    <p>Need help? Our support team is always available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PMSSS</h3>
+                    <p>Prime Minister's Special Scholarship Scheme for students of Jammu & Kashmir and Ladakh</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="apply.html">Apply</a></li>
+                        <li><a href="status.html">Status</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: support@pmsss.gov.in</p>
+                    <p>Helpline: 1800-XXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PMSSS. All Rights Reserved. | Government of India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header" id="chatbotHeader">
+            <div class="chatbot-title">
+                <span class="bot-icon">🤖</span>
+                <div>
+                    <h3>PMSSS Assistant</h3>
+                    <span class="bot-status">Online</span>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="bot-message">
+                <div class="message-content">
+                    <p>Hello! 👋 I'm your PMSSS virtual assistant.</p>
+                    <p>I can help you with:</p>
+                    <ul>
+                        <li>Application guidelines</li>
+                        <li>Eligibility criteria</li>
+                        <li>Document requirements</li>
+                        <li>Filling the form</li>
+                    </ul>
+                    <p>How can I assist you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-quick-questions" id="quickQuestions">
+            <button class="quick-btn" onclick="askQuestion('What documents are required?')">📄 Required Documents</button>
+            <button class="quick-btn" onclick="askQuestion('What is the eligibility criteria?')">✅ Eligibility Criteria</button>
+            <button class="quick-btn" onclick="askQuestion('How to fill bank details?')">🏦 Bank Details Help</button>
+            <button class="quick-btn" onclick="askQuestion('What is the scholarship amount?')">💰 Scholarship Amount</button>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your question here..." />
+            <button id="chatbotSend">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10L18 2L10 18L8 12L2 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle">
+        <span class="chat-icon">💬</span>
+        <span class="notification-badge">1</span>
+    </button>
+
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

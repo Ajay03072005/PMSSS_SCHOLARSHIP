@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Application Form - PMSSS</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <span class="logo-p">P</span><span class="logo-m">M</span><span class="logo-s">SSS</span>
+                <span class="logo-subtitle">Scholarship Portal</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="apply.html" class="active">APPLY</a></li>
+            <li><a href="status.html">STATUS</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="login.html" class="login-btn">LOGIN</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-header">
+        <h1>Scholarship Application Form</h1>
+        <p>Complete all sections carefully. Fields marked with * are mandatory</p>
+    </section>
+
+    <section class="application-form-section">
+        <div class="container">
+            <!-- Progress Indicator -->
+            <div class="progress-bar">
+                <div class="progress-step active">
+                    <div class="step-circle">1</div>
+                    <span>Personal</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <span>Academic</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <span>Family</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">4</div>
+                    <span>Documents</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">5</div>
+                    <span>Review</span>
+                </div>
+            </div>
+
+            <form class="application-form" id="applicationForm">
+                <div class="form-section active" id="section1">
+                    <h2 class="section-title">📋 Personal Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Middle Name</label>
+                            <input type="text" id="middleName" name="middleName" placeholder="Enter middle name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth *</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="general">General</option>
+                                <option value="obc">OBC</option>
+                                <option value="sc">SC</option>
+                                <option value="st">ST</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="aadhar">Aadhar Number *</label>
+                            <input type="text" id="aadhar" name="aadhar" placeholder="Enter 12-digit Aadhar" maxlength="12" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number *</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Permanent Address *</label>
+                        <textarea id="address" name="address" rows="3" placeholder="Enter complete address" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="district">District *</label>
+                            <input type="text" id="district" name="district" placeholder="Enter district" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State/UT *</label>
+                            <select id="state" name="state" required>
+                                <option value="">Select State/UT</option>
+                                <option value="jk">Jammu & Kashmir</option>
+                                <option value="ladakh">Ladakh</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode">PIN Code *</label>
+                            <input type="text" id="pincode" name="pincode" placeholder="Enter PIN code" maxlength="6" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Academic Information -->
+                <div class="form-section" id="section2">
+                    <h2 class="section-title">🎓 Academic Information</h2>
+                    
+                    <h3 class="subsection-title">10th Class Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tenth-board">Board *</label>
+                            <input type="text" id="tenth-board" name="tenth-board" placeholder="e.g., JKBOSE" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenth-year">Year of Passing *</label>
+                            <input type="number" id="tenth-year" name="tenth-year" placeholder="e.g., 2022" min="2000" max="2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenth-marks">Percentage/CGPA *</label>
+                            <input type="text" id="tenth-marks" name="tenth-marks" placeholder="e.g., 85.5%" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tenth-roll">Roll Number *</label>
+                            <input type="text" id="tenth-roll" name="tenth-roll" placeholder="Enter roll number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenth-school">School Name *</label>
+                            <input type="text" id="tenth-school" name="tenth-school" placeholder="Enter school name" required>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">12th Class Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="twelfth-board">Board *</label>
+                            <input type="text" id="twelfth-board" name="twelfth-board" placeholder="e.g., JKBOSE" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelfth-year">Year of Passing *</label>
+                            <input type="number" id="twelfth-year" name="twelfth-year" placeholder="e.g., 2024" min="2000" max="2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelfth-marks">Percentage/CGPA *</label>
+                            <input type="text" id="twelfth-marks" name="twelfth-marks" placeholder="e.g., 75.5%" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="twelfth-roll">Roll Number *</label>
+                            <input type="text" id="twelfth-roll" name="twelfth-roll" placeholder="Enter roll number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelfth-school">School Name *</label>
+                            <input type="text" id="twelfth-school" name="twelfth-school" placeholder="Enter school name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelfth-stream">Stream *</label>
+                            <select id="twelfth-stream" name="twelfth-stream" required>
+                                <option value="">Select Stream</option>
+                                <option value="science">Science</option>
+                                <option value="commerce">Commerce</option>
+                                <option value="arts">Arts</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Course Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-type">Course Type *</label>
+                            <select id="course-type" name="course-type" required>
+                                <option value="">Select Course Type</option>
+                                <option value="general">General Degree</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="medical">Medical</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-name">Course Name *</label>
+                            <input type="text" id="course-name" name="course-name" placeholder="e.g., B.Tech CSE" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-duration">Duration (Years) *</label>
+                            <input type="number" id="course-duration" name="course-duration" placeholder="e.g., 4" min="1" max="6" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="college-name">College/Institute Name *</label>
+                            <input type="text" id="college-name" name="college-name" placeholder="Enter college name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="college-state">College State *</label>
+                            <input type="text" id="college-state" name="college-state" placeholder="Enter state" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="admission-year">Year of Admission *</label>
+                            <input type="number" id="admission-year" name="admission-year" placeholder="e.g., 2024" min="2020" max="2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admission-status">Admission Status *</label>
+                            <select id="admission-status" name="admission-status" required>
+                                <option value="">Select Status</option>
+                                <option value="confirmed">Admission Confirmed</option>
+                                <option value="provisional">Provisional Admission</option>
+                                <option value="applied">Applied</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Family Information -->
+                <div class="form-section" id="section3">
+                    <h2 class="section-title">👨‍👩‍👧‍👦 Family Information</h2>
+                    
+                    <h3 class="subsection-title">Father's Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="father-name">Father's Name *</label>
+                            <input type="text" id="father-name" name="father-name" placeholder="Enter father's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="father-occupation">Occupation *</label>
+                            <input type="text" id="father-occupation" name="father-occupation" placeholder="Enter occupation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="father-mobile">Mobile Number</label>
+                            <input type="tel" id="father-mobile" name="father-mobile" placeholder="Enter mobile number" maxlength="10">
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Mother's Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mother-name">Mother's Name *</label>
+                            <input type="text" id="mother-name" name="mother-name" placeholder="Enter mother's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mother-occupation">Occupation *</label>
+                            <input type="text" id="mother-occupation" name="mother-occupation" placeholder="Enter occupation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mother-mobile">Mobile Number</label>
+                            <input type="tel" id="mother-mobile" name="mother-mobile" placeholder="Enter mobile number" maxlength="10">
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Family Income Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="annual-income">Annual Family Income *</label>
+                            <input type="number" id="annual-income" name="annual-income" placeholder="Enter amount in ₹" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="income-source">Primary Income Source *</label>
+                            <input type="text" id="income-source" name="income-source" placeholder="e.g., Agriculture, Business" required>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Bank Account Details (for Scholarship Disbursement)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="account-holder">Account Holder Name *</label>
+                            <input type="text" id="account-holder" name="account-holder" placeholder="Enter account holder name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="account-number">Account Number *</label>
+                            <input type="text" id="account-number" name="account-number" placeholder="Enter account number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ifsc-code">IFSC Code *</label>
+                            <input type="text" id="ifsc-code" name="ifsc-code" placeholder="Enter IFSC code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bank-name">Bank Name *</label>
+                            <input type="text" id="bank-name" name="bank-name" placeholder="Enter bank name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="branch-name">Branch Name *</label>
+                            <input type="text" id="branch-name" name="branch-name" placeholder="Enter branch name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Document Upload -->
+                <div class="form-section" id="section4">
+                    <h2 class="section-title">📄 Document Upload</h2>
+                    <p class="upload-note">Upload scanned copies of the following documents (PDF/JPG format, max 2MB each)</p>
+                    
+                    <div class="upload-grid">
+                        <div class="upload-item">
+                            <label for="doc-photo">
+                                <span class="doc-icon">📷</span>
+                                <span class="doc-name">Passport Size Photo *</span>
+                            </label>
+                            <input type="file" id="doc-photo" name="doc-photo" accept=".jpg,.jpeg,.png" required>
+                            <span class="file-info">Max size: 500KB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-aadhar">
+                                <span class="doc-icon">🆔</span>
+                                <span class="doc-name">Aadhar Card *</span>
+                            </label>
+                            <input type="file" id="doc-aadhar" name="doc-aadhar" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-domicile">
+                                <span class="doc-icon">📜</span>
+                                <span class="doc-name">Domicile Certificate *</span>
+                            </label>
+                            <input type="file" id="doc-domicile" name="doc-domicile" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-income">
+                                <span class="doc-icon">💰</span>
+                                <span class="doc-name">Income Certificate *</span>
+                            </label>
+                            <input type="file" id="doc-income" name="doc-income" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-tenth">
+                                <span class="doc-icon">📋</span>
+                                <span class="doc-name">10th Marksheet *</span>
+                            </label>
+                            <input type="file" id="doc-tenth" name="doc-tenth" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-twelfth">
+                                <span class="doc-icon">📋</span>
+                                <span class="doc-name">12th Marksheet *</span>
+                            </label>
+                            <input type="file" id="doc-twelfth" name="doc-twelfth" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-admission">
+                                <span class="doc-icon">🎓</span>
+                                <span class="doc-name">Admission Letter *</span>
+                            </label>
+                            <input type="file" id="doc-admission" name="doc-admission" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+
+                        <div class="upload-item">
+                            <label for="doc-bank">
+                                <span class="doc-icon">🏦</span>
+                                <span class="doc-name">Bank Passbook/Statement *</span>
+                            </label>
+                            <input type="file" id="doc-bank" name="doc-bank" accept=".pdf,.jpg,.jpeg" required>
+                            <span class="file-info">Max size: 2MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Review & Submit -->
+                <div class="form-section" id="section5">
+                    <h2 class="section-title">✅ Review & Submit</h2>
+                    
+                    <div class="review-section">
+                        <h3>Application Summary</h3>
+                        <p class="review-note">Please review all the information before submitting. You can go back to edit any section using the buttons below.</p>
+                        
+                        <div class="summary-card">
+                            <h4>📋 Personal Information</h4>
+                            <div id="summary-personal"></div>
+                        </div>
+
+                        <div class="summary-card">
+                            <h4>🎓 Academic Information</h4>
+                            <div id="summary-academic"></div>
+                        </div>
+
+                        <div class="summary-card">
+                            <h4>👨‍👩‍👧‍👦 Family Information</h4>
+                            <div id="summary-family"></div>
+                        </div>
+
+                        <div class="summary-card">
+                            <h4>📄 Documents Uploaded</h4>
+                            <div id="summary-documents"></div>
+                        </div>
+                    </div>
+
+                    <div class="declaration-section">
+                        <h3>Declaration</h3>
+                        <div class="declaration-box">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="declaration" name="declaration" required>
+                                <span>I hereby declare that all the information provided above is true and correct to the best of my knowledge. I understand that any false information may lead to cancellation of my scholarship.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="btn-secondary" id="prevBtn" onclick="changeSection(-1)">Previous</button>
+                    <button type="button" class="btn-primary" id="nextBtn" onclick="changeSection(1)">Next</button>
+                    <button type="submit" class="btn-primary" id="submitBtn" style="display: none;">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PMSSS</h3>
+                    <p>Prime Minister's Special Scholarship Scheme for students of Jammu & Kashmir and Ladakh</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="apply.html">Apply</a></li>
+                        <li><a href="status.html">Status</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: support@pmsss.gov.in</p>
+                    <p>Helpline: 1800-XXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PMSSS. All Rights Reserved. | Government of India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header" id="chatbotHeader">
+            <div class="chatbot-title">
+                <span class="bot-icon">🤖</span>
+                <div>
+                    <h3>PMSSS Assistant</h3>
+                    <span class="bot-status">Online</span>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="bot-message">
+                <div class="message-content">
+                    <p>Hello! 👋 I'm your PMSSS virtual assistant.</p>
+                    <p>I can help you with:</p>
+                    <ul>
+                        <li>Application guidelines</li>
+                        <li>Eligibility criteria</li>
+                        <li>Document requirements</li>
+                        <li>Filling the form</li>
+                    </ul>
+                    <p>How can I assist you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-quick-questions" id="quickQuestions">
+            <button class="quick-btn" onclick="askQuestion('What documents are required?')">📄 Required Documents</button>
+            <button class="quick-btn" onclick="askQuestion('What is the eligibility criteria?')">✅ Eligibility Criteria</button>
+            <button class="quick-btn" onclick="askQuestion('How to fill bank details?')">🏦 Bank Details Help</button>
+            <button class="quick-btn" onclick="askQuestion('What is the scholarship amount?')">💰 Scholarship Amount</button>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your question here..." />
+            <button id="chatbotSend">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10L18 2L10 18L8 12L2 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle">
+        <span class="chat-icon">💬</span>
+        <span class="notification-badge">1</span>
+    </button>
+
+    <script src="js/application.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
