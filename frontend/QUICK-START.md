@@ -1,135 +1,128 @@
-# Quick Setup - You Have MySQL Already! 🎉
+# 🚀 QUICK START GUIDE
 
-Since you have MySQL installed, you just need **Apache + PHP**. Here's the easiest way:
+## Start the Application (2 Steps)
 
----
-
-## 🚀 Recommended: Install XAMPP
-
-### Why XAMPP?
-- ✅ Includes Apache + PHP (you won't use its MySQL)
-- ✅ Easy to install and configure
-- ✅ Works perfectly with your existing MySQL
-- ✅ No conflicts!
-
-### Steps:
-
-1. **Download XAMPP**
-   - Go to: https://www.apachefriends.org/
-   - Download for Windows
-   - Install to default location: `C:\xampp`
-
-2. **Move Your Project**
-   ```
-   Copy: C:\Users\ajaya\Documents\Scholarship
-   To: C:\xampp\htdocs\Scholarship
-   ```
-
-3. **Start Only Apache**
-   - Open XAMPP Control Panel
-   - Click **Start** next to **Apache** ONLY
-   - ❌ Do NOT start MySQL in XAMPP (use your system MySQL)
-
-4. **Create Database in Your MySQL**
-   
-   Open PowerShell or Command Prompt:
-   ```bash
-   mysql -u root -pAjay
-   ```
-   
-   Then run:
-   ```sql
-   CREATE DATABASE pmsss_scholarship CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   USE pmsss_scholarship;
-   SOURCE C:/Users/ajaya/Documents/Scholarship/php-backend/database.sql;
-   SHOW TABLES;
-   EXIT;
-   ```
-
-5. **Test Your Portal**
-   - Open browser
-   - Go to: http://localhost/Scholarship/test-backend.html
-   - Click "Test API Connection"
-   - All should be green ✅
-
----
-
-## 📋 Quick Checklist
-
-- [ ] Download & Install XAMPP
-- [ ] Copy project to `C:\xampp\htdocs\Scholarship`
-- [ ] Start Apache in XAMPP (leave MySQL off)
-- [ ] Your system MySQL is already running ✅
-- [ ] Run SQL commands to create database
-- [ ] Test: http://localhost/Scholarship/test-backend.html
-
----
-
-## 🔧 Create Database - Simple Commands
-
-**Option 1: Command Line (Fastest)**
+### Step 1: Start Backend Server
 ```bash
-# Login to MySQL
-mysql -u root -pAjay
+cd backend
+START-SERVER.bat
+```
+**Keep this window open!** Server runs on: `http://localhost:8000`
 
-# Copy and paste these commands:
-CREATE DATABASE pmsss_scholarship CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE pmsss_scholarship;
-SOURCE C:/xampp/htdocs/Scholarship/php-backend/database.sql;
-SHOW TABLES;
-EXIT;
+### Step 2: Open Frontend
+- **Option A (Recommended):** Open `frontend/index.html` with Live Server in VS Code
+- **Option B:** Double-click `frontend/index.html` to open in browser
+- **Option C:** Run a local server:
+  ```bash
+  cd frontend
+  python -m http.server 3000
+  ```
+
+## Test the Setup
+
+### 1. Test Backend
+Open in browser: `http://localhost:8000/index.php`
+
+You should see:
+```json
+{
+  "status": "success",
+  "message": "PMSSS Scholarship API Server",
+  ...
+}
 ```
 
-**Option 2: If you have MySQL Workbench**
-1. Open MySQL Workbench
-2. Connect to localhost
-3. Create new schema: `pmsss_scholarship`
-4. Right-click → Run SQL Script
-5. Select: `database.sql`
-6. Execute
+### 2. Test Frontend
+Open: `frontend/index.html` in your browser
 
-**Option 3: If you have phpMyAdmin**
-1. Go to: http://localhost/phpmyadmin
-2. New → Database name: `pmsss_scholarship`
-3. Import → Choose `database.sql`
-4. Go
+You should see the PMSSS homepage with:
+- Navigation menu
+- Hero section
+- Features
+- Login/Register buttons
 
----
+## Common Issues
 
-## ✅ After Setup
+### ❌ "Not Found" Error
+**Problem:** Server isn't running or running from wrong directory
 
-Your stack will be:
-- **MySQL**: Your existing installation (port 3306) ✅
-- **Apache**: XAMPP (port 80)
-- **PHP**: XAMPP
-- **Project**: `C:\xampp\htdocs\Scholarship`
+**Fix:**
+```bash
+# Stop any running PHP servers
+taskkill /F /IM php.exe
 
-Access your portal at: **http://localhost/Scholarship/index.html**
-
----
-
-## 🎯 Why This Works Perfectly
-
-Your `database.php` is already configured:
-```php
-Host: localhost        ← Your MySQL server
-User: root            ← Your MySQL user  
-Password: Ajay        ← Your MySQL password ✅
-Database: pmsss_scholarship
+# Start from backend folder
+cd backend
+START-SERVER.bat
 ```
 
-XAMPP's Apache will use PHP to connect to YOUR MySQL (not XAMPP's MySQL). Perfect! 🎉
+### ❌ API Connection Failed
+**Problem:** Frontend can't connect to backend
+
+**Check:**
+1. Backend server is running on port 8000
+2. Open `http://localhost:8000/index.php` - should show API info
+3. Check browser console (F12) for errors
+4. Verify `frontend/js/config.js` has: `BASE_URL: 'http://localhost:8000/api'`
+
+### ❌ Database Connection Error
+**Problem:** Can't connect to MySQL
+
+**Fix:**
+1. Start XAMPP
+2. Start MySQL (Port: 3307)
+3. Run: `backend/setup-database.bat`
+4. Test: `http://localhost:8000/test-connection.php`
+
+## File Structure
+
+```
+PMSSS_SCHOLARSHIP/
+├── backend/               ← Start server here
+│   ├── START-SERVER.bat  ← Double-click to start
+│   ├── api/              ← API endpoints
+│   ├── config/           ← Configuration
+│   └── uploads/          ← Uploaded files
+│
+└── frontend/             ← Open in browser
+    ├── index.html        ← Homepage
+    ├── apply.html        ← Application form
+    ├── login.html        ← Login page
+    └── js/               ← JavaScript files
+```
+
+## URLs Reference
+
+| Service | URL | Purpose |
+|---------|-----|---------|
+| Backend Root | http://localhost:8000 | API server |
+| API Info | http://localhost:8000/index.php | Server status |
+| Auth API | http://localhost:8000/api/auth.php | Login/Register |
+| Applications API | http://localhost:8000/api/applications.php | Submit/View applications |
+| Frontend | frontend/index.html | User interface |
+
+## Next Steps
+
+1. ✅ Start backend server
+2. ✅ Open frontend in browser
+3. 📝 Register a new account
+4. 📄 Submit scholarship application
+5. 📊 Track application status
+6. 💾 Download application PDF
+
+## Need Help?
+
+- 📖 See `backend/BACKEND-README.md` for API documentation
+- 📖 See `frontend/FRONTEND-README.md` for frontend setup
+- 📖 See `PROJECT-README.md` for complete overview
 
 ---
 
-## 💡 What If I Already Have Apache?
+**Quick Test:**
+1. Open: `http://localhost:8000/index.php` (should show API info)
+2. Open: `frontend/index.html` (should show homepage)
+3. Click "Register" and create an account
+4. Fill out application form
+5. View and download your application
 
-If you have Apache installed separately:
-1. Make sure PHP is installed and configured
-2. Move project to your Apache webroot
-3. Update Apache to recognize `.php` files
-4. Create the database using commands above
-
----
-
-**Next Step:** Install XAMPP and create the database! 🚀
+**Everything working?** You're ready to go! 🎉
