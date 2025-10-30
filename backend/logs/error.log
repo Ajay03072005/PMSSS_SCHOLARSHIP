@@ -1,5 +1,42 @@
-[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Undefined array key "father" in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 147
-[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 147
-[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Undefined array key "mother" in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 150
-[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 150
-[30-Oct-2025 15:29:10 Europe/Berlin] PHP Warning:  Array to string conversion in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 70
+[30-Oct-2025 17:42:43 Europe/Berlin] PHP Warning:  Attempt to read property "admin_id" on array in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\applications.php on line 201
+[30-Oct-2025 18:24:25 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:24:32 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:30:28 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:32:56 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:33:24 Europe/Berlin] PHP Warning:  Attempt to read property "admin_id" on array in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\applications.php on line 202
+[30-Oct-2025 18:34:04 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:37:59 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:40:15 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
+[30-Oct-2025 18:44:59 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: http_response_code(): Argument #1 ($response_code) must be of type int, string given in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php:67
+Stack trace:
+#0 C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php(67): http_response_code('42S22')
+#1 {main}
+  thrown in C:\Users\ajaya\Documents\Scholarship\backend\api\admin\users.php on line 67
