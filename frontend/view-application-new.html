@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Application - PMSSS Scholarship Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .application-view {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            padding: 50px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-download, .btn-print {
+            background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-download:hover, .btn-print:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Professional Government Form Layout */
+        .printable-area {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-header {
+            text-align: center;
+            border-bottom: 4px double #000;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-header h1 {
+            color: #d32f2f;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .form-header h2 {
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 13px;
+            margin: 4px 0;
+        }
+
+        .app-id-box {
+            background: #fff3cd;
+            border: 2px solid #d32f2f;
+            padding: 12px 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .app-id-box strong {
+            color: #d32f2f;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .app-id-box span {
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* Personal Info with Photo */
+        .personal-header {
+            display: grid;
+            grid-template-columns: 1fr 160px;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .photo-placeholder {
+            width: 160px;
+            height: 200px;
+            border: 3px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Section Headers - Red Background */
+        .section-header {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Form Table */
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .form-table tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .form-table tr:last-child {
+            border-bottom: 2px solid #000;
+        }
+
+        .form-table td {
+            padding: 10px 12px;
+            vertical-align: top;
+        }
+
+        .form-table td:first-child {
+            color: #000;
+            font-weight: bold;
+            width: 32%;
+            font-size: 13px;
+        }
+
+        .form-table td:last-child {
+            color: #333;
+            font-size: 13px;
+        }
+
+        /* Two Column Table */
+        .form-table-2col {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .form-table-2col tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .form-table-2col td {
+            padding: 10px 12px;
+            width: 25%;
+        }
+
+        .form-table-2col td:nth-child(odd) {
+            color: #000;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .form-table-2col td:nth-child(even) {
+            color: #333;
+            font-size: 13px;
+        }
+
+        /* Documents Section */
+        .doc-checklist {
+            margin-top: 15px;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafafa;
+        }
+
+        .doc-item:nth-child(even) {
+            background: white;
+        }
+
+        .doc-item span:first-child {
+            color: #000;
+            font-weight: 600;
+            flex: 1;
+            font-size: 13px;
+        }
+
+        .doc-status {
+            padding: 4px 14px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .doc-status.uploaded {
+            background: #4caf50;
+            color: white;
+        }
+
+        .doc-status.missing {
+            background: #f44336;
+            color: white;
+        }
+
+        /* Declaration Box */
+        .declaration-box {
+            border: 2px solid #000;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .declaration-box h4 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .signature-box {
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 2px solid #000;
+            margin-top: 60px;
+            padding-top: 8px;
+            font-size: 12px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .navbar, .page-header, .action-buttons {
+                display: none !important;
+            }
+
+            .application-view {
+                max-width: 100%;
+            }
+
+            .printable-area {
+                box-shadow: none;
+                padding: 30px;
+            }
+
+            .section-header {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .doc-status.uploaded, .doc-status.missing {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <span class="logo-p">P</span><span class="logo-m">M</span><span class="logo-s">SSS</span>
+                <span class="logo-subtitle">Scholarship Portal</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="apply.html">APPLY</a></li>
+            <li><a href="status.html">STATUS</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="login.html" class="login-btn">LOGOUT</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-header">
+        <h1>Application Form</h1>
+        <p>Prime Minister's Special Scholarship Scheme</p>
+    </section>
+
+    <div class="application-view">
+        <div id="loading" class="loading">
+            Loading application details...
+        </div>
+
+        <div id="applicationContent" style="display: none;">
+            <div class="action-buttons">
+                <button class="btn-download" onclick="downloadPDF()">
+                    <span>📥</span>
+                    Download PDF
+                </button>
+                <button class="btn-print" onclick="window.print()">
+                    <span>🖨️</span>
+                    Print Application
+                </button>
+            </div>
+
+            <div id="printableArea" class="printable-area">
+                <!-- Form Header -->
+                <div class="form-header">
+                    <h1>Government of India</h1>
+                    <h2>All India Council for Technical Education (AICTE)</h2>
+                    <p>Prime Minister's Special Scholarship Scheme (PMSSS)</p>
+                    <p>Academic Year 2024-25</p>
+                </div>
+
+                <!-- Application ID -->
+                <div class="app-id-box">
+                    <strong>APPLICATION ID:</strong>
+                    <span id="applicationId"></span>
+                    <span style="margin-left: 30px; font-size: 12px; color: #666;" id="submissionDate"></span>
+                </div>
+
+                <!-- Personal Information with Photo -->
+                <div class="personal-header">
+                    <div>
+                        <div class="section-header">PERSONAL INFORMATION</div>
+                        <table class="form-table" id="personalInfo"></table>
+                    </div>
+                    <div>
+                        <div class="photo-placeholder" id="photoContainer">
+                            Passport Size Photo
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Information -->
+                <div class="section-header">ACADEMIC INFORMATION</div>
+                <div id="academicInfo"></div>
+
+                <!-- Family Information -->
+                <div class="section-header">FAMILY & INCOME DETAILS</div>
+                <table class="form-table" id="familyInfo"></table>
+
+                <!-- Bank Details -->
+                <div class="section-header">BANK ACCOUNT DETAILS</div>
+                <table class="form-table" id="bankInfo"></table>
+
+                <!-- Documents Uploaded -->
+                <div class="section-header">DOCUMENTS SUBMITTED</div>
+                <div class="doc-checklist" id="documentsInfo"></div>
+
+                <!-- Declaration -->
+                <div class="declaration-box">
+                    <h4>DECLARATION</h4>
+                    <p>I hereby declare that all the information provided in this application form is true and correct to the best of my knowledge and belief. I understand that any false information or suppression of facts may lead to cancellation of my scholarship at any stage.</p>
+                </div>
+
+                <!-- Signature Section -->
+                <div class="signature-section">
+                    <div class="signature-box">
+                        <div class="signature-line">Date & Place</div>
+                    </div>
+                    <div class="signature-box">
+                        <div class="signature-line">Signature of Applicant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- html2pdf.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Config and View Application Script -->
+    <script src="js/config.js"></script>
+    <script src="js/view-application.js"></script>
+</body>
+</html>

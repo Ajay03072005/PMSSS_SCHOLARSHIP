@@ -1,0 +1,5 @@
+[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Undefined array key "father" in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 147
+[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 147
+[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Undefined array key "mother" in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 150
+[30-Oct-2025 12:53:59 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 150
+[30-Oct-2025 15:29:10 Europe/Berlin] PHP Warning:  Array to string conversion in C:\Users\ajaya\Documents\Scholarship\php-backend\api\applications-debug.php on line 70

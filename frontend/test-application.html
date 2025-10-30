@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Application Submission</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin: 5px; }
+        button:hover { background: #45a049; }
+        .output { background: #f5f5f5; padding: 15px; border-radius: 5px; margin-top: 10px; white-space: pre-wrap; font-family: monospace; max-height: 400px; overflow-y: auto; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Test Application Submission</h1>
+    
+    <div class="section">
+        <h3>Step 1: Login</h3>
+        <input type="email" id="loginEmail" placeholder="Email" value="ajayajax02@gmail.com">
+        <input type="password" id="loginPassword" placeholder="Password" value="">
+        <button onclick="testLogin()">Login</button>
+        <div id="loginOutput" class="output"></div>
+    </div>
+
+    <div class="section">
+        <h3>Step 2: Submit Test Application</h3>
+        <button onclick="testSubmit()">Submit Test Application</button>
+        <div id="submitOutput" class="output"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/php-backend/api';
+        let authToken = localStorage.getItem('token');
+
+        function log(elementId, message, isError = false) {
+            const output = document.getElementById(elementId);
+            const span = document.createElement('div');
+            span.className = isError ? 'error' : 'success';
+            span.textContent = message;
+            output.appendChild(span);
+        }
+
+        async function testLogin() {
+            const output = document.getElementById('loginOutput');
+            output.innerHTML = '';
+            
+            try {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                log('loginOutput', 'Attempting login...');
+                
+                const response = await fetch(`${API_BASE}/auth.php?action=login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                log('loginOutput', 'Response: ' + JSON.stringify(data, null, 2));
+                
+                if (data.success && data.token) {
+                    authToken = data.token;
+                    localStorage.setItem('token', authToken);
+                    log('loginOutput', 'Token saved successfully!');
+                } else {
+                    log('loginOutput', 'Login failed: ' + data.message, true);
+                }
+            } catch (error) {
+                log('loginOutput', 'Error: ' + error.message, true);
+            }
+        }
+
+        async function testSubmit() {
+            const output = document.getElementById('submitOutput');
+            output.innerHTML = '';
+            
+            if (!authToken) {
+                log('submitOutput', 'Please login first!', true);
+                return;
+            }
+            
+            try {
+                log('submitOutput', 'Preparing test application data...');
+                
+                const testData = {
+                    personalInfo: {
+                        firstName: "Test",
+                        middleName: "Middle",
+                        lastName: "User",
+                        dateOfBirth: "2000-01-01",
+                        gender: "male",
+                        category: "general",
+                        aadhar: "123456789012",
+                        mobile: "9876543210",
+                        email: "ajayajax02@gmail.com",
+                        address: "Test Address",
+                        district: "Test District",
+                        state: "Jammu and Kashmir",
+                        pincode: "190001"
+                    },
+                    academicInfo: {
+                        tenth: {
+                            board: "JKBOSE",
+                            yearOfPassing: 2015,
+                            percentage: "85.5",
+                            rollNumber: "123456",
+                            schoolName: "Test School"
+                        },
+                        twelfth: {
+                            board: "JKBOSE",
+                            yearOfPassing: 2017,
+                            percentage: "88.5",
+                            rollNumber: "654321",
+                            schoolName: "Test College",
+                            stream: "science"
+                        },
+                        course: {
+                            type: "engineering",
+                            name: "B.Tech Computer Science",
+                            duration: 4,
+                            collegeName: "Test University",
+                            collegeState: "Jammu and Kashmir",
+                            admissionYear: 2018,
+                            admissionStatus: "admitted"
+                        }
+                    },
+                    familyInfo: {
+                        fatherName: "Test Father",
+                        motherName: "Test Mother",
+                        guardianName: "",
+                        fatherOccupation: "Business",
+                        motherOccupation: "Homemaker",
+                        annualIncome: "300000",
+                        domicile: "Jammu and Kashmir"
+                    },
+                    bankDetails: {
+                        accountNumber: "1234567890",
+                        ifscCode: "SBIN0000123",
+                        bankName: "State Bank of India",
+                        branchName: "Test Branch",
+                        accountHolderName: "Test User"
+                    }
+                };
+                
+                const formData = new FormData();
+                formData.append('data', JSON.stringify(testData));
+                
+                log('submitOutput', 'Submitting to: ' + API_BASE + '/applications-debug.php');
+                log('submitOutput', 'Token: ' + authToken.substring(0, 20) + '...');
+                
+                const response = await fetch(`${API_BASE}/applications-debug.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: formData
+                });
+                
+                log('submitOutput', 'Response status: ' + response.status);
+                log('submitOutput', 'Response headers: ' + JSON.stringify([...response.headers.entries()]));
+                
+                const contentType = response.headers.get('content-type');
+                let data;
+                
+                if (contentType && contentType.includes('application/json')) {
+                    data = await response.json();
+                    log('submitOutput', 'Response data: ' + JSON.stringify(data, null, 2));
+                } else {
+                    const text = await response.text();
+                    log('submitOutput', 'Response text: ' + text);
+                    data = { text };
+                }
+                
+                if (data.success) {
+                    log('submitOutput', 'SUCCESS! Application submitted!');
+                } else {
+                    log('submitOutput', 'Failed: ' + (data.message || 'Unknown error'), true);
+                }
+            } catch (error) {
+                log('submitOutput', 'Error: ' + error.message, true);
+                log('submitOutput', 'Stack: ' + error.stack, true);
+            }
+        }
+    </script>
+</body>
+</html>

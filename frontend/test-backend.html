@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Backend Test - PMSSS Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .status-box {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-box.pending {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+        }
+        
+        .status-box.success {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+        
+        .status-box.error {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .test-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .test-section h2 {
+            color: #495057;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #ccc;
+        }
+        
+        .checklist li.done {
+            border-left-color: #28a745;
+            background: #f1f9f3;
+        }
+        
+        .checklist li.pending {
+            border-left-color: #ffc107;
+        }
+        
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 PMSSS Portal - Backend Test</h1>
+        <p class="subtitle">PHP + MySQL Backend Testing Dashboard</p>
+        
+        <div id="status" class="status-box pending">
+            <span class="icon">⏳</span>
+            <span>Waiting to test backend connection...</span>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 Setup Checklist</h2>
+            <ul class="checklist">
+                <li id="check1" class="pending"><span class="icon">☐</span> XAMPP installed</li>
+                <li id="check2" class="pending"><span class="icon">☐</span> Apache running</li>
+                <li id="check3" class="pending"><span class="icon">☐</span> MySQL running</li>
+                <li id="check4" class="pending"><span class="icon">☐</span> Database created</li>
+                <li id="check5" class="pending"><span class="icon">☐</span> Backend API responding</li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔌 Test Backend Connection</h2>
+            <button onclick="testConnection()">Test API Connection</button>
+            <div id="connectionResult" class="result" style="display:none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>👤 Test User Registration</h2>
+            <button onclick="testRegistration()">Test Register User</button>
+            <div id="registerResult" class="result" style="display:none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔑 Test User Login</h2>
+            <button onclick="testLogin()" id="loginBtn" disabled>Test Login</button>
+            <div id="loginResult" class="result" style="display:none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📝 Next Steps</h2>
+            <ol style="line-height: 2;">
+                <li>Click "Test API Connection" above</li>
+                <li>If successful, test registration and login</li>
+                <li>Open <a href="http://localhost/phpmyadmin" target="_blank">phpMyAdmin</a> to view database</li>
+                <li>Start using the <a href="index.html">PMSSS Portal</a></li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'http://localhost/Scholarship/php-backend/api';
+        let testEmail = 'test_' + Date.now() + '@example.com';
+        let testPassword = 'Test@12345';
+        
+        async function testConnection() {
+            const resultDiv = document.getElementById('connectionResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '⏳ Testing connection...';
+            
+            try {
+                // Test auth endpoint with invalid action (should return error, proving it's working)
+                const response = await fetch(`${API_BASE}/auth.php?action=test`, {
+                    method: 'GET'
+                });
+                
+                const data = await response.json();
+                
+                // Even error responses mean the API is working
+                document.getElementById('status').className = 'status-box success';
+                document.getElementById('status').innerHTML = '<span class="icon">✅</span><span>Backend is running successfully!</span>';
+                
+                document.getElementById('check1').className = 'done';
+                document.getElementById('check1').innerHTML = '<span class="icon">✅</span> XAMPP installed';
+                document.getElementById('check2').className = 'done';
+                document.getElementById('check2').innerHTML = '<span class="icon">✅</span> Apache running';
+                document.getElementById('check5').className = 'done';
+                document.getElementById('check5').innerHTML = '<span class="icon">✅</span> Backend API responding';
+                
+                resultDiv.innerHTML = `
+                    <div style="color: green; font-weight: bold;">✅ SUCCESS!</div>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                    <p style="margin-top: 10px; color: #666;">Backend API is working correctly!</p>
+                `;
+                
+            } catch (error) {
+                document.getElementById('status').className = 'status-box error';
+                document.getElementById('status').innerHTML = '<span class="icon">❌</span><span>Backend connection failed!</span>';
+                
+                resultDiv.innerHTML = `
+                    <div style="color: red; font-weight: bold;">❌ FAILED!</div>
+                    <pre>${error.message}</pre>
+                    <p style="margin-top: 10px; color: #666;">
+                        Make sure:<br>
+                        1. XAMPP is installed<br>
+                        2. Apache is running (green in XAMPP)<br>
+                        3. Project is in C:\\xampp\\htdocs\\Scholarship\\
+                    </p>
+                `;
+            }
+        }
+        
+        async function testRegistration() {
+            const resultDiv = document.getElementById('registerResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '⏳ Testing registration...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth.php?action=register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        firstName: 'Test',
+                        lastName: 'User',
+                        email: testEmail,
+                        password: testPassword,
+                        mobile: '9876543210',
+                        aadhar: '123456789012',
+                        dateOfBirth: '2000-01-01'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('check3').className = 'done';
+                    document.getElementById('check3').innerHTML = '<span class="icon">✅</span> MySQL running';
+                    document.getElementById('check4').className = 'done';
+                    document.getElementById('check4').innerHTML = '<span class="icon">✅</span> Database created';
+                    
+                    document.getElementById('loginBtn').disabled = false;
+                    
+                    resultDiv.innerHTML = `
+                        <div style="color: green; font-weight: bold;">✅ REGISTRATION SUCCESS!</div>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                        <p style="margin-top: 10px; color: #666;">
+                            User created successfully!<br>
+                            Email: ${testEmail}<br>
+                            You can now test login.
+                        </p>
+                    `;
+                } else {
+                    throw new Error(data.message || 'Registration failed');
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div style="color: red; font-weight: bold;">❌ REGISTRATION FAILED!</div>
+                    <pre>${error.message}</pre>
+                    <p style="margin-top: 10px; color: #666;">
+                        Possible issues:<br>
+                        1. Database not created (run database.sql in phpMyAdmin)<br>
+                        2. MySQL not running<br>
+                        3. Database credentials incorrect
+                    </p>
+                `;
+            }
+        }
+        
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '⏳ Testing login...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth.php?action=login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: testEmail,
+                        password: testPassword
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div style="color: green; font-weight: bold;">✅ LOGIN SUCCESS!</div>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                        <p style="margin-top: 10px; color: #666;">
+                            <strong>🎉 All tests passed!</strong><br>
+                            Your PHP backend is working perfectly!<br><br>
+                            Token: ${data.token.substring(0, 50)}...<br><br>
+                            You can now:<br>
+                            1. Go to <a href="index.html">PMSSS Portal</a><br>
+                            2. Register and login normally<br>
+                            3. View data in <a href="http://localhost/phpmyadmin" target="_blank">phpMyAdmin</a>
+                        </p>
+                    `;
+                } else {
+                    throw new Error(data.message || 'Login failed');
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div style="color: red; font-weight: bold;">❌ LOGIN FAILED!</div>
+                    <pre>${error.message}</pre>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

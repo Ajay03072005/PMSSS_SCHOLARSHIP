@@ -1,0 +1,1290 @@
+2025-10-30 13:52:30 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1112
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxODI3OTIxLCJleHAiOjE3NjI0MzI3MjF9.DoSR982y9-rmJso5MiPuun-ZoxVRb6svo-1qzFKHhqo
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundary3Fg9KuqbWa0gLbDn
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Ajay","middleName":"qwertyu","lastName":"P","dateOfBirth":"2005-07-04","gender":"male","category":"obc","aadhar":"363157523288","mobile":"9942431773","email":"ajayajax02@gmail.com","address":"bzhjgchhdbc","district":"123456","state":"jk","pincode":"098765"},"academicInfo":{"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qwertyu","occupation":"gghgj","mobile":"nbnm"},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"12345678900987","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+)
+
+2025-10-30 13:52:30 - Database connected successfully
+2025-10-30 13:52:30 - Processing application submission
+2025-10-30 13:52:30 - User authenticated: ID=2
+2025-10-30 13:52:30 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Ajay
+            [middleName] => qwertyu
+            [lastName] => P
+            [dateOfBirth] => 2005-07-04
+            [gender] => male
+            [category] => obc
+            [aadhar] => 363157523288
+            [mobile] => 9942431773
+            [email] => ajayajax02@gmail.com
+            [address] => bzhjgchhdbc
+            [district] => 123456
+            [state] => jk
+            [pincode] => 098765
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                    [stream] => 
+                )
+
+            [course] => Array
+                (
+                    [type] => 
+                    [name] => 
+                    [duration] => 0
+                    [collegeName] => 
+                    [collegeState] => 
+                    [admissionYear] => 0
+                    [admissionStatus] => 
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qwertyu
+                    [occupation] => gghgj
+                    [mobile] => nbnm
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => 12345678900987
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 13:52:30 - Existing app check: Not found
+2025-10-30 13:52:30 - Application status: submitted
+2025-10-30 13:52:30 - Creating new application
+2025-10-30 13:52:30 - Generated Application ID: PMSSS2025217440
+2025-10-30 13:52:30 - Executing INSERT with params: Array
+(
+    [0] => 2
+    [1] => PMSSS2025217440
+    [2] => Ajay
+    [3] => qwertyu
+    [4] => P
+    [5] => 2005-07-04
+    [6] => male
+    [7] => obc
+    [8] => 363157523288
+    [9] => 9942431773
+    [10] => ajayajax02@gmail.com
+    [11] => bzhjgchhdbc
+    [12] => 123456
+    [13] => jk
+    [14] => 098765
+    [15] => {"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}}
+    [16] => hjhZ
+    [17] => bbsadm
+    [18] => 9942431773
+    [19] => qwertyu
+    [20] => gghgj
+    [21] => nbnm
+    [22] => 0
+    [23] => bbxz
+    [24] => 12345678900987
+    [25] => 123456789087
+    [26] => iuiu
+    [27] => hgzxcjz
+    [28] => bnvczx
+    [29] => 
+    [30] => 
+    [31] => 
+    [32] => 
+    [33] => 
+    [34] => 
+    [35] => 
+    [36] => 
+    [37] => submitted
+    [38] => 1
+)
+
+2025-10-30 13:52:30 - Application created with ID: 1
+2025-10-30 13:52:30 - History and notification created
+2025-10-30 14:04:44 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1111
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxODI5MTQ2LCJleHAiOjE3NjI0MzM5NDZ9.4qzcQRO4S6XNwUcCCK6uBWm0jZfXMPo_Q_VHI5S2AFs
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryeuSHN1A6vjMfJf0A
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Ajay","middleName":"qwertyu","lastName":"P","dateOfBirth":"2005-07-04","gender":"male","category":"obc","aadhar":"363157523288","mobile":"9942431773","email":"ajayajax02@gmail.com","address":"12/147 mathanagar","district":"123456","state":"jk","pincode":"098765"},"academicInfo":{"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qyu","occupation":"nbnm","mobile":"9942431773"},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"zxczzc","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+)
+
+2025-10-30 14:04:44 - Database connected successfully
+2025-10-30 14:04:44 - Processing application submission
+2025-10-30 14:04:44 - User authenticated: ID=2
+2025-10-30 14:04:44 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Ajay
+            [middleName] => qwertyu
+            [lastName] => P
+            [dateOfBirth] => 2005-07-04
+            [gender] => male
+            [category] => obc
+            [aadhar] => 363157523288
+            [mobile] => 9942431773
+            [email] => ajayajax02@gmail.com
+            [address] => 12/147 mathanagar
+            [district] => 123456
+            [state] => jk
+            [pincode] => 098765
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                    [stream] => 
+                )
+
+            [course] => Array
+                (
+                    [type] => 
+                    [name] => 
+                    [duration] => 0
+                    [collegeName] => 
+                    [collegeState] => 
+                    [admissionYear] => 0
+                    [admissionStatus] => 
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qyu
+                    [occupation] => nbnm
+                    [mobile] => 9942431773
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => zxczzc
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 14:04:44 - Existing app check: Found ID=1
+2025-10-30 14:04:44 - Application status: submitted
+2025-10-30 14:04:44 - Updating existing application
+2025-10-30 14:04:44 - Update params: Array
+(
+    [0] => Ajay
+    [1] => qwertyu
+    [2] => P
+    [3] => 2005-07-04
+    [4] => male
+    [5] => obc
+    [6] => 363157523288
+    [7] => 9942431773
+    [8] => ajayajax02@gmail.com
+    [9] => 12/147 mathanagar
+    [10] => 123456
+    [11] => jk
+    [12] => 098765
+    [13] => {"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}}
+    [14] => hjhZ
+    [15] => bbsadm
+    [16] => qyu
+    [17] => nbnm
+    [18] => 0
+    [19] => zxczzc
+    [20] => 123456789087
+    [21] => iuiu
+    [22] => hgzxcjz
+    [23] => bnvczx
+    [24] => submitted
+    [25] => 1
+)
+
+2025-10-30 14:04:44 - Update SQL: UPDATE applications SET first_name = ?, middle_name = ?, last_name = ?, date_of_birth = ?, gender = ?, category = ?, aadhar = ?, mobile = ?, email = ?, address = ?, district = ?, state = ?, pincode = ?, academic_info = ?, father_name = ?, father_occupation = ?, mother_name = ?, mother_occupation = ?, annual_income = ?, account_holder_name = ?, account_number = ?, ifsc_code = ?, bank_name = ?, branch_name = ?, status = ?, declaration = ?, updated_at = NOW(), submitted_at = NOW() WHERE id = ?
+2025-10-30 14:04:44 - Application updated successfully
+2025-10-30 14:15:59 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1111
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxODI5MTQ2LCJleHAiOjE3NjI0MzM5NDZ9.4qzcQRO4S6XNwUcCCK6uBWm0jZfXMPo_Q_VHI5S2AFs
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundary4x7VrO8GUWSanuX6
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Ajay","middleName":"qwertyu","lastName":"P","dateOfBirth":"2005-07-04","gender":"male","category":"obc","aadhar":"363157523288","mobile":"9942431773","email":"ajayajax02@gmail.com","address":"12/147 mathanagar","district":"123456","state":"jk","pincode":"098765"},"academicInfo":{"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qyu","occupation":"nbnm","mobile":"9942431773"},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"zxczzc","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+)
+
+2025-10-30 14:15:59 - Database connected successfully
+2025-10-30 14:15:59 - Processing application submission
+2025-10-30 14:15:59 - User authenticated: ID=2
+2025-10-30 14:15:59 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Ajay
+            [middleName] => qwertyu
+            [lastName] => P
+            [dateOfBirth] => 2005-07-04
+            [gender] => male
+            [category] => obc
+            [aadhar] => 363157523288
+            [mobile] => 9942431773
+            [email] => ajayajax02@gmail.com
+            [address] => 12/147 mathanagar
+            [district] => 123456
+            [state] => jk
+            [pincode] => 098765
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                    [stream] => 
+                )
+
+            [course] => Array
+                (
+                    [type] => 
+                    [name] => 
+                    [duration] => 0
+                    [collegeName] => 
+                    [collegeState] => 
+                    [admissionYear] => 0
+                    [admissionStatus] => 
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qyu
+                    [occupation] => nbnm
+                    [mobile] => 9942431773
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => zxczzc
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 14:15:59 - Existing app check: Found ID=1
+2025-10-30 14:15:59 - Application status: submitted
+2025-10-30 14:15:59 - Updating existing application
+2025-10-30 14:15:59 - Update params: Array
+(
+    [0] => Ajay
+    [1] => qwertyu
+    [2] => P
+    [3] => 2005-07-04
+    [4] => male
+    [5] => obc
+    [6] => 363157523288
+    [7] => 9942431773
+    [8] => ajayajax02@gmail.com
+    [9] => 12/147 mathanagar
+    [10] => 123456
+    [11] => jk
+    [12] => 098765
+    [13] => {"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}}
+    [14] => hjhZ
+    [15] => bbsadm
+    [16] => qyu
+    [17] => nbnm
+    [18] => 0
+    [19] => zxczzc
+    [20] => 123456789087
+    [21] => iuiu
+    [22] => hgzxcjz
+    [23] => bnvczx
+    [24] => submitted
+    [25] => 1
+)
+
+2025-10-30 14:15:59 - Update SQL: UPDATE applications SET first_name = ?, middle_name = ?, last_name = ?, date_of_birth = ?, gender = ?, category = ?, aadhar = ?, mobile = ?, email = ?, address = ?, district = ?, state = ?, pincode = ?, academic_info = ?, father_name = ?, father_occupation = ?, mother_name = ?, mother_occupation = ?, annual_income = ?, account_holder_name = ?, account_number = ?, ifsc_code = ?, bank_name = ?, branch_name = ?, status = ?, declaration = ?, updated_at = NOW(), submitted_at = NOW() WHERE id = ?
+2025-10-30 14:15:59 - Application updated successfully
+2025-10-30 14:19:49 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1111
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxODI5MTQ2LCJleHAiOjE3NjI0MzM5NDZ9.4qzcQRO4S6XNwUcCCK6uBWm0jZfXMPo_Q_VHI5S2AFs
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundary9IZ5ZjOJSauekWdf
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Ajay","middleName":"qwertyu","lastName":"P","dateOfBirth":"2005-07-04","gender":"male","category":"obc","aadhar":"363157523288","mobile":"9942431773","email":"ajayajax02@gmail.com","address":"12/147 mathanagar","district":"123456","state":"jk","pincode":"098765"},"academicInfo":{"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qyu","occupation":"nbnm","mobile":"9942431773"},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"zxczzc","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+)
+
+2025-10-30 14:19:49 - Database connected successfully
+2025-10-30 14:19:49 - Processing application submission
+2025-10-30 14:19:49 - User authenticated: ID=2
+2025-10-30 14:19:49 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Ajay
+            [middleName] => qwertyu
+            [lastName] => P
+            [dateOfBirth] => 2005-07-04
+            [gender] => male
+            [category] => obc
+            [aadhar] => 363157523288
+            [mobile] => 9942431773
+            [email] => ajayajax02@gmail.com
+            [address] => 12/147 mathanagar
+            [district] => 123456
+            [state] => jk
+            [pincode] => 098765
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => 
+                    [yearOfPassing] => 0
+                    [percentage] => 
+                    [rollNumber] => 
+                    [schoolName] => 
+                    [stream] => 
+                )
+
+            [course] => Array
+                (
+                    [type] => 
+                    [name] => 
+                    [duration] => 0
+                    [collegeName] => 
+                    [collegeState] => 
+                    [admissionYear] => 0
+                    [admissionStatus] => 
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qyu
+                    [occupation] => nbnm
+                    [mobile] => 9942431773
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => zxczzc
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 14:19:49 - Existing DRAFT check: Not found - will create new
+2025-10-30 14:19:49 - Application status: submitted
+2025-10-30 14:19:49 - Creating new application
+2025-10-30 14:19:49 - Generated Application ID: PMSSS2025596136
+2025-10-30 14:19:49 - Executing INSERT with params: Array
+(
+    [0] => 2
+    [1] => PMSSS2025596136
+    [2] => Ajay
+    [3] => qwertyu
+    [4] => P
+    [5] => 2005-07-04
+    [6] => male
+    [7] => obc
+    [8] => 363157523288
+    [9] => 9942431773
+    [10] => ajayajax02@gmail.com
+    [11] => 12/147 mathanagar
+    [12] => 123456
+    [13] => jk
+    [14] => 098765
+    [15] => {"tenth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":""},"twelfth":{"board":"","yearOfPassing":0,"percentage":"","rollNumber":"","schoolName":"","stream":""},"course":{"type":"","name":"","duration":0,"collegeName":"","collegeState":"","admissionYear":0,"admissionStatus":""}}
+    [16] => hjhZ
+    [17] => bbsadm
+    [18] => 9942431773
+    [19] => qyu
+    [20] => nbnm
+    [21] => 9942431773
+    [22] => 0
+    [23] => bbxz
+    [24] => zxczzc
+    [25] => 123456789087
+    [26] => iuiu
+    [27] => hgzxcjz
+    [28] => bnvczx
+    [29] => 
+    [30] => 
+    [31] => 
+    [32] => 
+    [33] => 
+    [34] => 
+    [35] => 
+    [36] => 
+    [37] => submitted
+    [38] => 1
+)
+
+2025-10-30 14:19:49 - Application created with ID: 2
+2025-10-30 14:19:49 - History and notification created
+2025-10-30 15:22:47 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1205
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI0Iiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjE4MzQwMjAsImV4cCI6MTc2MjQzODgyMH0.T_Dy35d7tiRNNmSuCqY5ohQBPON3wDzw3D9Kobi5AFs
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundarysSk9H1bcHKYp9xwh
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Ajay","middleName":"qwertyu","lastName":"P","dateOfBirth":"2005-07-04","gender":"male","category":"obc","aadhar":"363157523288","mobile":"9942431773","email":"nishakarnishakar2005@gmail.com","address":"bzhjgchhdbc","district":"123456","state":"jk","pincode":"098765"},"academicInfo":{"tenth":{"board":"rty","yearOfPassing":2004,"percentage":"89","rollNumber":"ncjsd","schoolName":"aawrkqrhk"},"twelfth":{"board":"sdfg","yearOfPassing":2020,"percentage":"79","rollNumber":"1234567","schoolName":"Ajay P","stream":"science"},"course":{"type":"engineering","name":"Ajay P","duration":4,"collegeName":"anbcs","collegeState":"Jammu & Kashmir","admissionYear":2025,"admissionStatus":"confirmed"}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qyu","occupation":"nbnm","mobile":""},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"zxczzc","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+)
+
+2025-10-30 15:22:47 - Database connected successfully
+2025-10-30 15:22:47 - Processing application submission
+2025-10-30 15:22:47 - User authenticated: ID=4
+2025-10-30 15:22:47 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Ajay
+            [middleName] => qwertyu
+            [lastName] => P
+            [dateOfBirth] => 2005-07-04
+            [gender] => male
+            [category] => obc
+            [aadhar] => 363157523288
+            [mobile] => 9942431773
+            [email] => nishakarnishakar2005@gmail.com
+            [address] => bzhjgchhdbc
+            [district] => 123456
+            [state] => jk
+            [pincode] => 098765
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => rty
+                    [yearOfPassing] => 2004
+                    [percentage] => 89
+                    [rollNumber] => ncjsd
+                    [schoolName] => aawrkqrhk
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => sdfg
+                    [yearOfPassing] => 2020
+                    [percentage] => 79
+                    [rollNumber] => 1234567
+                    [schoolName] => Ajay P
+                    [stream] => science
+                )
+
+            [course] => Array
+                (
+                    [type] => engineering
+                    [name] => Ajay P
+                    [duration] => 4
+                    [collegeName] => anbcs
+                    [collegeState] => Jammu & Kashmir
+                    [admissionYear] => 2025
+                    [admissionStatus] => confirmed
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qyu
+                    [occupation] => nbnm
+                    [mobile] => 
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => zxczzc
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 15:22:47 - Existing DRAFT check: Not found - will create new
+2025-10-30 15:22:47 - Application status: submitted
+2025-10-30 15:22:47 - Creating new application
+2025-10-30 15:22:47 - Generated Application ID: PMSSS2025599015
+2025-10-30 15:22:47 - Executing INSERT with params: Array
+(
+    [0] => 4
+    [1] => PMSSS2025599015
+    [2] => Ajay
+    [3] => qwertyu
+    [4] => P
+    [5] => 2005-07-04
+    [6] => male
+    [7] => obc
+    [8] => 363157523288
+    [9] => 9942431773
+    [10] => nishakarnishakar2005@gmail.com
+    [11] => bzhjgchhdbc
+    [12] => 123456
+    [13] => jk
+    [14] => 098765
+    [15] => {"tenth":{"board":"rty","yearOfPassing":2004,"percentage":"89","rollNumber":"ncjsd","schoolName":"aawrkqrhk"},"twelfth":{"board":"sdfg","yearOfPassing":2020,"percentage":"79","rollNumber":"1234567","schoolName":"Ajay P","stream":"science"},"course":{"type":"engineering","name":"Ajay P","duration":4,"collegeName":"anbcs","collegeState":"Jammu & Kashmir","admissionYear":2025,"admissionStatus":"confirmed"}}
+    [16] => hjhZ
+    [17] => bbsadm
+    [18] => 9942431773
+    [19] => qyu
+    [20] => nbnm
+    [21] => 
+    [22] => 0
+    [23] => bbxz
+    [24] => zxczzc
+    [25] => 123456789087
+    [26] => iuiu
+    [27] => hgzxcjz
+    [28] => bnvczx
+    [29] => 
+    [30] => 
+    [31] => 
+    [32] => 
+    [33] => 
+    [34] => 
+    [35] => 
+    [36] => 
+    [37] => submitted
+    [38] => 1
+)
+
+2025-10-30 15:22:47 - Application created with ID: 3
+2025-10-30 15:22:47 - History and notification created
+2025-10-30 15:29:10 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1213
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxODM0NDA3LCJleHAiOjE3NjI0MzkyMDd9.Ew-d4TJ4tREa9RaA42JdbyqyO7CsONHEqMWrQ9x9GV0
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryK2uk2w55UBqBELtX
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Nishakar","middleName":"qwertyu","lastName":"P","dateOfBirth":"2005-07-04","gender":"male","category":"obc","aadhar":"363157523288","mobile":"9942431773","email":"nishakarnishakar2005@gmail.com","address":"bzhjgchhdbc","district":"123456","state":"jk","pincode":"098765"},"academicInfo":{"tenth":{"board":"rty","yearOfPassing":2022,"percentage":"89","rollNumber":"ncjsd","schoolName":"aawrkqrhk"},"twelfth":{"board":"sdfg","yearOfPassing":2024,"percentage":"79","rollNumber":"1234567","schoolName":"hgvghvv","stream":"commerce"},"course":{"type":"engineering","name":"Ajay P","duration":4,"collegeName":"anbcs","collegeState":"Jammu & Kashmir","admissionYear":2025,"admissionStatus":"provisional"}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qyu","occupation":"nbnm","mobile":""},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"zxczzc","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+)
+
+2025-10-30 15:29:10 - Database connected successfully
+2025-10-30 15:29:10 - Processing application submission
+2025-10-30 15:29:10 - User authenticated: ID=4
+2025-10-30 15:29:10 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Nishakar
+            [middleName] => qwertyu
+            [lastName] => P
+            [dateOfBirth] => 2005-07-04
+            [gender] => male
+            [category] => obc
+            [aadhar] => 363157523288
+            [mobile] => 9942431773
+            [email] => nishakarnishakar2005@gmail.com
+            [address] => bzhjgchhdbc
+            [district] => 123456
+            [state] => jk
+            [pincode] => 098765
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => rty
+                    [yearOfPassing] => 2022
+                    [percentage] => 89
+                    [rollNumber] => ncjsd
+                    [schoolName] => aawrkqrhk
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => sdfg
+                    [yearOfPassing] => 2024
+                    [percentage] => 79
+                    [rollNumber] => 1234567
+                    [schoolName] => hgvghvv
+                    [stream] => commerce
+                )
+
+            [course] => Array
+                (
+                    [type] => engineering
+                    [name] => Ajay P
+                    [duration] => 4
+                    [collegeName] => anbcs
+                    [collegeState] => Jammu & Kashmir
+                    [admissionYear] => 2025
+                    [admissionStatus] => provisional
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qyu
+                    [occupation] => nbnm
+                    [mobile] => 
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => zxczzc
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 15:29:10 - FILES received: Array
+(
+)
+
+2025-10-30 15:29:10 - WARNING: No files in Array array
+2025-10-30 15:29:10 - Existing DRAFT check: Not found - will create new
+2025-10-30 15:29:10 - Application status: submitted
+2025-10-30 15:29:10 - Creating new application
+2025-10-30 15:29:10 - Generated Application ID: PMSSS2025777355
+2025-10-30 15:29:10 - Executing INSERT with params: Array
+(
+    [0] => 4
+    [1] => PMSSS2025777355
+    [2] => Nishakar
+    [3] => qwertyu
+    [4] => P
+    [5] => 2005-07-04
+    [6] => male
+    [7] => obc
+    [8] => 363157523288
+    [9] => 9942431773
+    [10] => nishakarnishakar2005@gmail.com
+    [11] => bzhjgchhdbc
+    [12] => 123456
+    [13] => jk
+    [14] => 098765
+    [15] => {"tenth":{"board":"rty","yearOfPassing":2022,"percentage":"89","rollNumber":"ncjsd","schoolName":"aawrkqrhk"},"twelfth":{"board":"sdfg","yearOfPassing":2024,"percentage":"79","rollNumber":"1234567","schoolName":"hgvghvv","stream":"commerce"},"course":{"type":"engineering","name":"Ajay P","duration":4,"collegeName":"anbcs","collegeState":"Jammu & Kashmir","admissionYear":2025,"admissionStatus":"provisional"}}
+    [16] => hjhZ
+    [17] => bbsadm
+    [18] => 9942431773
+    [19] => qyu
+    [20] => nbnm
+    [21] => 
+    [22] => 0
+    [23] => bbxz
+    [24] => zxczzc
+    [25] => 123456789087
+    [26] => iuiu
+    [27] => hgzxcjz
+    [28] => bnvczx
+    [29] => 
+    [30] => 
+    [31] => 
+    [32] => 
+    [33] => 
+    [34] => 
+    [35] => 
+    [36] => 
+    [37] => submitted
+    [38] => 1
+)
+
+2025-10-30 15:29:10 - Application created with ID: 4
+2025-10-30 15:29:10 - History and notification created
+2025-10-30 15:34:44 - Request received
+Method: POST
+Action: none
+Headers: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 1224190
+    [sec-ch-ua-platform] => "Windows"
+    [Authorization] => Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzYxODM0Nzg4LCJleHAiOjE3NjI0Mzk1ODh9.sZdVUp1AIcc7debTmLQvBRMiSxAONpZkeZvjRrrCjvA
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0
+    [sec-ch-ua] => "Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryJdppe039dvlHQCno
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/application-form.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => en-US,en;q=0.9,en-IN;q=0.8
+)
+
+POST data: Array
+(
+    [data] => {"personalInfo":{"firstName":"Ajay","middleName":"","lastName":"P","dateOfBirth":"2007-07-04","gender":"male","category":"general","aadhar":"nh8872982742","mobile":"9942431773","email":"nishakarnishakar2005@gmail.com","address":"bzhjgchhdbc","district":"123456","state":"jk","pincode":"iuiu"},"academicInfo":{"tenth":{"board":"rty","yearOfPassing":2023,"percentage":"89","rollNumber":"ncjsd","schoolName":"aawrkqrhk"},"twelfth":{"board":"sdfg","yearOfPassing":2025,"percentage":"79","rollNumber":"1234567","schoolName":"hgvghvv","stream":"science"},"course":{"type":"engineering","name":"B.tech","duration":4,"collegeName":"anbcs","collegeState":"Jammu & Kashmir","admissionYear":2025,"admissionStatus":"confirmed"}},"familyInfo":{"father":{"name":"hjhZ","occupation":"bbsadm","mobile":"9942431773"},"mother":{"name":"qyu","occupation":"nbnm","mobile":""},"annualIncome":0,"incomeSource":"bbxz"},"bankDetails":{"accountHolderName":"zxczzc","accountNumber":"123456789087","ifscCode":"iuiu","bankName":"hgzxcjz","branchName":"bnvczx"},"declaration":true,"submit":true}
+)
+
+FILES: Array
+(
+    [photo] => Array
+        (
+            [name] => Ajay.png
+            [full_path] => Ajay.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\phpA38D.tmp
+            [error] => 0
+            [size] => 130249
+        )
+
+    [aadhar] => Array
+        (
+            [name] => AJAY_P (2).pdf
+            [full_path] => AJAY_P (2).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA38E.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+    [domicile] => Array
+        (
+            [name] => AJAY_P (2).pdf
+            [full_path] => AJAY_P (2).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA38F.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+    [income] => Array
+        (
+            [name] => AJAY_P (1).pdf
+            [full_path] => AJAY_P (1).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA390.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+    [tenthMarksheet] => Array
+        (
+            [name] => AJAY_P (1).pdf
+            [full_path] => AJAY_P (1).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA391.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+    [twelfthMarksheet] => Array
+        (
+            [name] => AJAY_P (1).pdf
+            [full_path] => AJAY_P (1).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA392.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+    [admissionLetter] => Array
+        (
+            [name] => AJAY_P (1).pdf
+            [full_path] => AJAY_P (1).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA393.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+    [bankPassbook] => Array
+        (
+            [name] => AJAY_P (1).pdf
+            [full_path] => AJAY_P (1).pdf
+            [type] => application/pdf
+            [tmp_name] => C:\xampp\tmp\phpA394.tmp
+            [error] => 0
+            [size] => 155930
+        )
+
+)
+
+2025-10-30 15:34:44 - Database connected successfully
+2025-10-30 15:34:44 - Processing application submission
+2025-10-30 15:34:44 - User authenticated: ID=4
+2025-10-30 15:34:44 - Decoded data: Array
+(
+    [personalInfo] => Array
+        (
+            [firstName] => Ajay
+            [middleName] => 
+            [lastName] => P
+            [dateOfBirth] => 2007-07-04
+            [gender] => male
+            [category] => general
+            [aadhar] => nh8872982742
+            [mobile] => 9942431773
+            [email] => nishakarnishakar2005@gmail.com
+            [address] => bzhjgchhdbc
+            [district] => 123456
+            [state] => jk
+            [pincode] => iuiu
+        )
+
+    [academicInfo] => Array
+        (
+            [tenth] => Array
+                (
+                    [board] => rty
+                    [yearOfPassing] => 2023
+                    [percentage] => 89
+                    [rollNumber] => ncjsd
+                    [schoolName] => aawrkqrhk
+                )
+
+            [twelfth] => Array
+                (
+                    [board] => sdfg
+                    [yearOfPassing] => 2025
+                    [percentage] => 79
+                    [rollNumber] => 1234567
+                    [schoolName] => hgvghvv
+                    [stream] => science
+                )
+
+            [course] => Array
+                (
+                    [type] => engineering
+                    [name] => B.tech
+                    [duration] => 4
+                    [collegeName] => anbcs
+                    [collegeState] => Jammu & Kashmir
+                    [admissionYear] => 2025
+                    [admissionStatus] => confirmed
+                )
+
+        )
+
+    [familyInfo] => Array
+        (
+            [father] => Array
+                (
+                    [name] => hjhZ
+                    [occupation] => bbsadm
+                    [mobile] => 9942431773
+                )
+
+            [mother] => Array
+                (
+                    [name] => qyu
+                    [occupation] => nbnm
+                    [mobile] => 
+                )
+
+            [annualIncome] => 0
+            [incomeSource] => bbxz
+        )
+
+    [bankDetails] => Array
+        (
+            [accountHolderName] => zxczzc
+            [accountNumber] => 123456789087
+            [ifscCode] => iuiu
+            [bankName] => hgzxcjz
+            [branchName] => bnvczx
+        )
+
+    [declaration] => 1
+    [submit] => 1
+)
+
+2025-10-30 15:34:44 - FILES received: Array
+(
+    [0] => photo
+    [1] => aadhar
+    [2] => domicile
+    [3] => income
+    [4] => tenthMarksheet
+    [5] => twelfthMarksheet
+    [6] => admissionLetter
+    [7] => bankPassbook
+)
+
+2025-10-30 15:34:44 - File photo: name=Ajay.png, size=130249, error=0
+2025-10-30 15:34:44 - File aadhar: name=AJAY_P (2).pdf, size=155930, error=0
+2025-10-30 15:34:44 - File domicile: name=AJAY_P (2).pdf, size=155930, error=0
+2025-10-30 15:34:44 - File income: name=AJAY_P (1).pdf, size=155930, error=0
+2025-10-30 15:34:44 - File tenthMarksheet: name=AJAY_P (1).pdf, size=155930, error=0
+2025-10-30 15:34:44 - File twelfthMarksheet: name=AJAY_P (1).pdf, size=155930, error=0
+2025-10-30 15:34:44 - File admissionLetter: name=AJAY_P (1).pdf, size=155930, error=0
+2025-10-30 15:34:44 - File bankPassbook: name=AJAY_P (1).pdf, size=155930, error=0
+2025-10-30 15:34:44 - Existing DRAFT check: Not found - will create new
+2025-10-30 15:34:44 - Processing file: photo
+2025-10-30 15:34:44 - File uploaded: photo -> uploads/photo_1761834884_69037784579a3.png
+2025-10-30 15:34:44 - Processing file: aadhar
+2025-10-30 15:34:44 - File uploaded: aadhar -> uploads/aadhar_1761834884_6903778458307.pdf
+2025-10-30 15:34:44 - Processing file: domicile
+2025-10-30 15:34:44 - File uploaded: domicile -> uploads/domicile_1761834884_69037784589b4.pdf
+2025-10-30 15:34:44 - Processing file: income
+2025-10-30 15:34:44 - File uploaded: income -> uploads/income_1761834884_690377845930e.pdf
+2025-10-30 15:34:44 - Processing file: tenthMarksheet
+2025-10-30 15:34:44 - File uploaded: tenthMarksheet -> uploads/tenthMarksheet_1761834884_6903778459a5b.pdf
+2025-10-30 15:34:44 - Processing file: twelfthMarksheet
+2025-10-30 15:34:44 - File uploaded: twelfthMarksheet -> uploads/twelfthMarksheet_1761834884_690377845a086.pdf
+2025-10-30 15:34:44 - Processing file: admissionLetter
+2025-10-30 15:34:44 - File uploaded: admissionLetter -> uploads/admissionLetter_1761834884_690377845a701.pdf
+2025-10-30 15:34:44 - Processing file: bankPassbook
+2025-10-30 15:34:44 - File uploaded: bankPassbook -> uploads/bankPassbook_1761834884_690377845aedb.pdf
+2025-10-30 15:34:44 - Application status: submitted
+2025-10-30 15:34:44 - Creating new application
+2025-10-30 15:34:44 - Generated Application ID: PMSSS2025870070
+2025-10-30 15:34:44 - Executing INSERT with params: Array
+(
+    [0] => 4
+    [1] => PMSSS2025870070
+    [2] => Ajay
+    [3] => 
+    [4] => P
+    [5] => 2007-07-04
+    [6] => male
+    [7] => general
+    [8] => nh8872982742
+    [9] => 9942431773
+    [10] => nishakarnishakar2005@gmail.com
+    [11] => bzhjgchhdbc
+    [12] => 123456
+    [13] => jk
+    [14] => iuiu
+    [15] => {"tenth":{"board":"rty","yearOfPassing":2023,"percentage":"89","rollNumber":"ncjsd","schoolName":"aawrkqrhk"},"twelfth":{"board":"sdfg","yearOfPassing":2025,"percentage":"79","rollNumber":"1234567","schoolName":"hgvghvv","stream":"science"},"course":{"type":"engineering","name":"B.tech","duration":4,"collegeName":"anbcs","collegeState":"Jammu & Kashmir","admissionYear":2025,"admissionStatus":"confirmed"}}
+    [16] => hjhZ
+    [17] => bbsadm
+    [18] => 9942431773
+    [19] => qyu
+    [20] => nbnm
+    [21] => 
+    [22] => 0
+    [23] => bbxz
+    [24] => zxczzc
+    [25] => 123456789087
+    [26] => iuiu
+    [27] => hgzxcjz
+    [28] => bnvczx
+    [29] => uploads/photo_1761834884_69037784579a3.png
+    [30] => uploads/aadhar_1761834884_6903778458307.pdf
+    [31] => uploads/domicile_1761834884_69037784589b4.pdf
+    [32] => uploads/income_1761834884_690377845930e.pdf
+    [33] => uploads/tenthMarksheet_1761834884_6903778459a5b.pdf
+    [34] => uploads/twelfthMarksheet_1761834884_690377845a086.pdf
+    [35] => uploads/admissionLetter_1761834884_690377845a701.pdf
+    [36] => uploads/bankPassbook_1761834884_690377845aedb.pdf
+    [37] => submitted
+    [38] => 1
+)
+
+2025-10-30 15:34:44 - Application created with ID: 5
+2025-10-30 15:34:44 - History and notification created

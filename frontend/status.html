@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - PMSSS Scholarship Portal</title>
+    <title>Check Status - PMSSS Scholarship Portal</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,93 +20,96 @@
         <ul class="nav-links">
             <li><a href="index.html">HOME</a></li>
             <li><a href="apply.html">APPLY</a></li>
-            <li><a href="status.html">STATUS</a></li>
+            <li><a href="status.html" class="active">STATUS</a></li>
             <li><a href="about.html">ABOUT</a></li>
             <li><a href="login.html" class="login-btn">LOGIN</a></li>
         </ul>
     </nav>
 
-    <section class="register-section">
-        <div class="register-container">
-            <div class="register-card">
-                <div class="register-header">
-                    <h2>Create Account</h2>
-                    <p>Register for PMSSS Scholarship</p>
-                </div>
+    <section class="page-header">
+        <h1>Check Application Status</h1>
+        <p>Track your scholarship application in real-time</p>
+    </section>
 
-                <form class="register-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" placeholder="Enter first name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" placeholder="Enter last name" required>
-                        </div>
-                    </div>
-
+    <section class="content-section">
+        <div class="container">
+            <div class="status-form-card">
+                <h2>Track Your Application</h2>
+                <p class="form-description">Enter your details to check application status</p>
+                
+                <form class="status-form">
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
+                        <label for="appId">Application ID / Registration Number</label>
+                        <input type="text" id="appId" placeholder="Enter your Application ID" required>
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="mobile">Mobile Number *</label>
-                        <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dob">Date of Birth *</label>
+                        <label for="dob">Date of Birth</label>
                         <input type="date" id="dob" required>
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="aadhar">Aadhar Number *</label>
-                        <input type="text" id="aadhar" placeholder="Enter 12-digit Aadhar number" maxlength="12" required>
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" placeholder="Enter registered mobile number" required>
                     </div>
-
-                    <div class="form-group">
-                        <label for="password">Create Password *</label>
-                        <input type="password" id="password" placeholder="Minimum 8 characters" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password *</label>
-                        <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="terms" required>
-                            <span>I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn-primary full-width">Register</button>
+                    
+                    <button type="submit" class="btn-primary">Check Status</button>
                 </form>
+            </div>
 
-                <div class="signup-prompt">
-                    <p>Already have an account? <a href="login.html">Login Here</a></p>
+            <div class="status-timeline">
+                <h2>Application Stages</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">✓</div>
+                        <div class="timeline-content">
+                            <h3>Application Submitted</h3>
+                            <p>Your application has been successfully submitted</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">⏳</div>
+                        <div class="timeline-content">
+                            <h3>Under Verification</h3>
+                            <p>Documents and details are being verified by authorities</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📋</div>
+                        <div class="timeline-content">
+                            <h3>Eligibility Check</h3>
+                            <p>Checking eligibility criteria and academic qualifications</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">💰</div>
+                        <div class="timeline-content">
+                            <h3>Approved</h3>
+                            <p>Application approved and scholarship amount processing</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🎉</div>
+                        <div class="timeline-content">
+                            <h3>Disbursed</h3>
+                            <p>Scholarship amount has been credited to your account</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="register-info">
-                <h3>Registration Benefits</h3>
-                <ul class="benefits-list">
-                    <li>✓ Quick and easy application process</li>
-                    <li>✓ Track your application status online</li>
-                    <li>✓ Receive instant notifications</li>
-                    <li>✓ Access to important documents</li>
-                    <li>✓ Secure and encrypted data</li>
-                    <li>✓ Renewal facility for existing scholars</li>
-                </ul>
-
-                <div class="help-box">
-                    <h4>Need Assistance?</h4>
-                    <p>Contact our support team</p>
-                    <p>📧 support@pmsss.gov.in</p>
-                    <p>📞 1800-XXX-XXXX</p>
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>🕒 Processing Time</h3>
+                    <p>Applications are typically processed within 30-45 days from submission date</p>
+                </div>
+                <div class="info-card">
+                    <h3>📧 Notifications</h3>
+                    <p>You will receive SMS and email updates at each stage of verification</p>
+                </div>
+                <div class="info-card">
+                    <h3>💬 Need Help?</h3>
+                    <p>Contact our support team at support@pmsss.gov.in or call 1800-XXX-XXXX</p>
                 </div>
             </div>
         </div>
@@ -189,6 +192,8 @@
         <span class="notification-badge">1</span>
     </button>
 
+    <script src="js/config.js"></script>
+    <script src="js/status.js"></script>
     <script src="js/chatbot.js"></script>
 </body>
 </html>
