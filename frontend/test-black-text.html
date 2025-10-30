@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Color Test</title>
+    <style>
+        body {
+            background: white;
+            padding: 20px;
+        }
+        
+        /* SUPER AGGRESSIVE - Force ALL text BLACK */
+        * {
+            color: #000 !important;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        table td, table th {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>TEXT COLOR TEST - ALL TEXT SHOULD BE BLACK</h1>
+    
+    <h2>If you can read this clearly, the CSS is working!</h2>
+    
+    <p>This is a paragraph. It should be BLACK.</p>
+    <p>Another paragraph. Also BLACK.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PMSSS2025870070</strong></td>
+                <td>Ajay P</td>
+                <td>nishakarnishakar2005@gmail.com</td>
+                <td>Submitted</td>
+            </tr>
+            <tr>
+                <td><strong>PMSSS2025870071</strong></td>
+                <td>Test User</td>
+                <td>test@example.com</td>
+                <td>Approved</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div>
+        <h3>Statistics:</h3>
+        <p>Total Applications: <strong>5</strong></p>
+        <p>Pending Review: <strong>0</strong></p>
+        <p>Approved: <strong>1</strong></p>
+    </div>
+    
+    <hr>
+    
+    <h2 style="color: red;">✓ If you can see ALL the text above in BLACK/DARK color:</h2>
+    <p style="font-size: 18px; font-weight: bold;">Then the CSS is working correctly!</p>
+    <p style="font-size: 18px; font-weight: bold;">Close this test and refresh your admin dashboard.</p>
+    
+    <h2 style="color: red;">✗ If you CANNOT see the text (it's invisible/white):</h2>
+    <p style="font-size: 18px; font-weight: bold;">Then there's a browser caching issue.</p>
+    <p>Solution: Close ALL browser tabs and windows, then reopen.</p>
+</body>
+</html>
