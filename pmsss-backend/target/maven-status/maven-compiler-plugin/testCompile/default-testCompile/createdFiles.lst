@@ -1,5 +1,0 @@
-com\pmsss\ai\AiServiceTest.class
-com\pmsss\auth\AuthServiceTest.class
-com\pmsss\payment\PaymentServiceTest.class
-com\pmsss\auth\AuthControllerIntegrationTest.class
-com\pmsss\application\ApplicationServiceTest.class
