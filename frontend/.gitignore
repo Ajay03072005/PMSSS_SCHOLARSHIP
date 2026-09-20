@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Logs & Temporary Files
+*.log
+temp/
+
+# Secrets
+.env
+.env.local

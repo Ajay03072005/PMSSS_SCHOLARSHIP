@@ -1,0 +1,39 @@
+# Maven Target Directory
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.rar
+
+# Eclipse / STS Metadata
+.classpath
+.project
+.settings/
+bin/
+
+# IntelliJ IDEA Metadata
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code Metadata
+.vscode/
+
+# Logs & Temporary Files
+*.log
+logs/
+temp/
+uploads/
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets & Local Configurations
+.env
+application-local.yml
+application-secrets.yml

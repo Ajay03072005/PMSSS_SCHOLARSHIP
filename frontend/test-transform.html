@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Transform Function</title>
+</head>
+<body>
+    <h1>Testing Transform Function</h1>
+    <div id="output"></div>
+    
+    <script>
+        // Copy the transform function
+        function transformApplicationData(app) {
+            console.log('Transforming app:', app);
+            
+            // Parse academic info if it's a JSON string
+            let academicInfo = {};
+            if (app.academic_info) {
+                try {
+                    academicInfo = typeof app.academic_info === 'string' 
+                        ? JSON.parse(app.academic_info) 
+                        : app.academic_info;
+                } catch (e) {
+                    console.error('Error parsing academic_info:', e);
+                }
+            }
+            
+            // Transform to expected format
+            const transformed = {
+                ...app,
+                // Combine name fields (handle empty middle name)
+                full_name: [app.first_name, app.middle_name, app.last_name]
+                    .filter(n => n && n.trim())
+                    .join(' '),
+                // Map column names
+                dob: app.date_of_birth,
+                phone: app.mobile,
+                aadhar_number: app.aadhar,
+                aadhar: app.aadhar_doc,
+                income: app.income_cert,
+                // Extract course and institution from academic_info
+                course_name: academicInfo.course?.name || 'N/A',
+                institution_name: academicInfo.course?.collegeName || 'N/A',
+                // Keep academic info for detailed view
+                academicInfo: academicInfo
+            };
+            
+            console.log('Transformed result:', transformed);
+            return transformed;
+        }
+        
+        // Test data (from your API)
+        const testApp = {
+            "id": 5,
+            "application_id": "PMSSS2025870070",
+            "first_name": "Ajay",
+            "middle_name": "",
+            "last_name": "P",
+            "email": "nishakarnishakar2005@gmail.com",
+            "mobile": "9942431773",
+            "date_of_birth": "2007-07-04",
+            "status": "submitted",
+            "created_at": "2025-10-30 20:04:44",
+            "user_name": "Nishakar  T",
+            "academic_info": "{\"tenth\":{\"board\":\"rty\",\"yearOfPassing\":2023,\"percentage\":\"89\",\"rollNumber\":\"ncjsd\",\"schoolName\":\"aawrkqrhk\"},\"twelfth\":{\"board\":\"sdfg\",\"yearOfPassing\":2025,\"percentage\":\"79\",\"rollNumber\":\"1234567\",\"schoolName\":\"hgvghvv\",\"stream\":\"science\"},\"course\":{\"type\":\"engineering\",\"name\":\"B.tech\",\"duration\":4,\"collegeName\":\"anbcs\",\"collegeState\":\"Jammu & Kashmir\",\"admissionYear\":2025,\"admissionStatus\":\"confirmed\"}}"
+        };
+        
+        // Transform it
+        const result = transformApplicationData(testApp);
+        
+        // Display results
+        const output = document.getElementById('output');
+        output.innerHTML = `
+            <h2>Original Data:</h2>
+            <pre>${JSON.stringify(testApp, null, 2)}</pre>
+            
+            <h2>Transformed Data:</h2>
+            <pre>${JSON.stringify(result, null, 2)}</pre>
+            
+            <h2>Display Test:</h2>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr>
+                    <th>Application ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Institution</th>
+                </tr>
+                <tr>
+                    <td>${result.application_id}</td>
+                    <td>${result.full_name}</td>
+                    <td>${result.email}</td>
+                    <td>${result.phone}</td>
+                    <td>${result.course_name}</td>
+                    <td>${result.institution_name}</td>
+                </tr>
+            </table>
+        `;
+    </script>
+</body>
+</html>

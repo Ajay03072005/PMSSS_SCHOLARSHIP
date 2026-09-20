@@ -1,0 +1,17 @@
+{
+  "totalTestsExecuted": 44,
+  "testsPassed": 42,
+  "testsFailed": 0,
+  "fixedDuringTesting": 3,
+  "scenariosExecuted": 30,
+  "scenariosPassed": 30,
+  "documentsUploaded": 135,
+  "documentsPassed": 51,
+  "cloudinaryMetadataVerified": 51,
+  "roleSecurityTestsPassed": 4,
+  "roleSecurityTestsFailed": 0,
+  "aiOcrTestsPassed": 8,
+  "notificationLogsVerified": 0,
+  "auditLogsVerified": 0,
+  "failures": []
+}

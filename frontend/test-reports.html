@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Reports Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .status {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reports Page Debug</h1>
+    
+    <div class="status">
+        <h3>1. Check localStorage</h3>
+        <div id="tokenStatus"></div>
+    </div>
+
+    <div class="status">
+        <h3>2. Test Actions</h3>
+        <button onclick="setTestToken()">Set Test Token</button>
+        <button onclick="clearToken()">Clear Token</button>
+        <button onclick="testAPI()">Test API</button>
+        <button onclick="window.location.href='reports.html'">Go to Reports Page</button>
+    </div>
+
+    <div class="status">
+        <h3>3. API Test Result</h3>
+        <div id="apiResult"></div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script>
+        // Check token status
+        function checkToken() {
+            const token = localStorage.getItem('adminToken');
+            const adminData = localStorage.getItem('adminData');
+            
+            const status = document.getElementById('tokenStatus');
+            if (token) {
+                status.innerHTML = `
+                    <p class="success">✓ Token exists: ${token.substring(0, 50)}...</p>
+                    <p class="info">Admin Data: ${adminData || 'None'}</p>
+                `;
+            } else {
+                status.innerHTML = '<p class="error">✗ No token found in localStorage</p>';
+            }
+        }
+
+        // Set a test token
+        async function setTestToken() {
+            try {
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/auth.php?action=login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'admin123'
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminData', JSON.stringify(data.admin));
+                    alert('Token set successfully!');
+                    checkToken();
+                } else {
+                    alert('Login failed: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Clear token
+        function clearToken() {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminData');
+            alert('Token cleared!');
+            checkToken();
+        }
+
+        // Test API
+        async function testAPI() {
+            const token = localStorage.getItem('adminToken');
+            const result = document.getElementById('apiResult');
+            
+            if (!token) {
+                result.innerHTML = '<p class="error">No token! Click "Set Test Token" first.</p>';
+                return;
+            }
+
+            try {
+                result.innerHTML = '<p class="info">Loading...</p>';
+                
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/applications.php?limit=10`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                result.innerHTML = `
+                    <p class="success">✓ API Response:</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                result.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+            }
+        }
+
+        // Check on load
+        checkToken();
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct Dashboard Test</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .status-badge { padding: 5px 10px; border-radius: 5px; }
+        .status-submitted { background-color: #2196f3; color: white; }
+        .status-approved { background-color: #4caf50; color: white; }
+        .btn-view { background-color: #2196f3; color: white; border: none; padding: 8px 16px; cursor: pointer; border-radius: 5px; margin: 2px; }
+        .btn-edit { background-color: #ff9800; color: white; border: none; padding: 8px 16px; cursor: pointer; border-radius: 5px; margin: 2px; }
+    </style>
+</head>
+<body>
+    <h1>Direct Dashboard Test - NO CACHING</h1>
+    <div id="output">Loading...</div>
+    
+    <script>
+        // Simulate API response (actual data from your backend)
+        const apiResponse = {
+            "success": true,
+            "applications": [
+                {
+                    "id": 5,
+                    "user_id": 4,
+                    "application_id": "PMSSS2025870070",
+                    "first_name": "Ajay",
+                    "middle_name": "",
+                    "last_name": "P",
+                    "date_of_birth": "2007-07-04",
+                    "gender": "male",
+                    "category": "general",
+                    "aadhar": "nh8872982742",
+                    "mobile": "9942431773",
+                    "email": "nishakarnishakar2005@gmail.com",
+                    "status": "submitted",
+                    "created_at": "2025-10-30 20:04:44",
+                    "user_name": "Nishakar  T",
+                    "academic_info": "{\"course\":{\"name\":\"B.tech\",\"collegeName\":\"anbcs\"}}"
+                },
+                {
+                    "id": 4,
+                    "application_id": "PMSSS2025870071",
+                    "first_name": "Test",
+                    "middle_name": "Middle",
+                    "last_name": "User",
+                    "email": "test@example.com",
+                    "mobile": "1234567890",
+                    "status": "approved",
+                    "created_at": "2025-10-29 10:00:00",
+                    "user_name": "Test User"
+                }
+            ]
+        };
+
+        // Copy the exact transform function from your code
+        function transformApplicationData(app) {
+            console.log('Transforming app:', app);
+            
+            let academicInfo = {};
+            if (app.academic_info) {
+                try {
+                    academicInfo = typeof app.academic_info === 'string' 
+                        ? JSON.parse(app.academic_info) 
+                        : app.academic_info;
+                } catch (e) {
+                    console.error('Error parsing academic_info:', e);
+                }
+            }
+            
+            const transformed = {
+                ...app,
+                full_name: [app.first_name, app.middle_name, app.last_name]
+                    .filter(n => n && n.trim())
+                    .join(' '),
+                dob: app.date_of_birth,
+                phone: app.mobile,
+                aadhar_number: app.aadhar,
+                aadhar: app.aadhar_doc,
+                income: app.income_cert,
+                course_name: academicInfo.course?.name || 'N/A',
+                institution_name: academicInfo.course?.collegeName || 'N/A',
+                academicInfo: academicInfo
+            };
+            
+            console.log('Transformed result:', transformed);
+            return transformed;
+        }
+
+        function formatStatus(status) {
+            return status ? status.charAt(0).toUpperCase() + status.slice(1) : 'N/A';
+        }
+
+        function formatDate(date) {
+            if (!date) return 'N/A';
+            return new Date(date).toLocaleDateString();
+        }
+
+        // Transform and display
+        const transformedApps = apiResponse.applications.map(app => transformApplicationData(app));
+        console.log('All transformed apps:', transformedApps);
+
+        const html = `
+            <h2>✅ Test Results:</h2>
+            <p><strong>Applications Found:</strong> ${transformedApps.length}</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${transformedApps.map(app => `
+                        <tr>
+                            <td><strong>${app.application_id}</strong></td>
+                            <td>${app.full_name || 'N/A'}</td>
+                            <td>${app.email || 'N/A'}</td>
+                            <td>${app.phone || 'N/A'}</td>
+                            <td><span class="status-badge status-${app.status}">${formatStatus(app.status)}</span></td>
+                            <td>${formatDate(app.created_at)}</td>
+                            <td>
+                                <button class="btn-view" onclick="alert('View clicked for ' + '${app.application_id}')">View</button>
+                                <button class="btn-edit" onclick="alert('Update clicked for ' + '${app.application_id}')">Update</button>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            
+            <h2>🔍 Debug Info:</h2>
+            <h3>First Transformed App:</h3>
+            <pre>${JSON.stringify(transformedApps[0], null, 2)}</pre>
+        `;
+
+        document.getElementById('output').innerHTML = html;
+    </script>
+</body>
+</html>

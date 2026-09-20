@@ -1,0 +1,20 @@
+{
+  "totalApplications": 30,
+  "applicationsPassed": 30,
+  "applicationsFailed": 0,
+  "documentsUploaded": 150,
+  "documentsPassed": 120,
+  "documentsFailed": 30,
+  "apiTestsPassed": 8,
+  "apiTestsFailed": 0,
+  "roleTestsPassed": 3,
+  "roleTestsFailed": 0,
+  "emailLogsCount": 0,
+  "smsLogsCount": 0,
+  "inAppNotificationsCount": 0,
+  "cloudinaryDocsCount": 120,
+  "aiTestsPassed": 9,
+  "aiTestsFailed": 0,
+  "auditLogsCount": 0,
+  "failures": []
+}

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Debug</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section {
+            background: #252526;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #3e3e42;
+        }
+        h2 {
+            color: #4ec9b0;
+            margin-top: 0;
+        }
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #1177bb;
+        }
+        .error {
+            color: #f48771;
+        }
+        .success {
+            color: #4ec9b0;
+        }
+        .warning {
+            color: #dcdcaa;
+        }
+        pre {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #3e3e42;
+        }
+        .token {
+            word-break: break-all;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Admin Dashboard Debug Tool</h1>
+    
+    <div class="section">
+        <h2>📦 LocalStorage Status</h2>
+        <div id="localStorage"></div>
+        <button onclick="clearStorage()">Clear All Storage</button>
+    </div>
+
+    <div class="section">
+        <h2>🔑 Token Verification</h2>
+        <button onclick="testTokenVerify()">Test Token Verify</button>
+        <div id="tokenVerifyResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>📊 Test Statistics API</h2>
+        <button onclick="testStatistics()">Fetch Statistics</button>
+        <div id="statisticsResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>📄 Test Applications API</h2>
+        <button onclick="testApplications()">Fetch Applications</button>
+        <div id="applicationsResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>👥 Test Users API</h2>
+        <button onclick="testUsers()">Fetch Users</button>
+        <div id="usersResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>🔐 Quick Login</h2>
+        <button onclick="quickLogin()">Login as Admin</button>
+        <div id="loginResult"></div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script>
+        // Display localStorage
+        function displayLocalStorage() {
+            const div = document.getElementById('localStorage');
+            const adminToken = localStorage.getItem('adminToken');
+            const adminUser = localStorage.getItem('adminUser');
+            
+            let html = '<pre>';
+            html += `<strong>adminToken:</strong> ${adminToken ? '<span class="success">✓ Present</span>' : '<span class="error">✗ Missing</span>'}\n`;
+            if (adminToken) {
+                html += `<div class="token">${adminToken}</div>\n`;
+            }
+            html += `\n<strong>adminUser:</strong> ${adminUser ? '<span class="success">✓ Present</span>' : '<span class="error">✗ Missing</span>'}\n`;
+            if (adminUser) {
+                html += `${adminUser}\n`;
+            }
+            html += '</pre>';
+            div.innerHTML = html;
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            alert('Storage cleared!');
+            displayLocalStorage();
+        }
+
+        async function testTokenVerify() {
+            const div = document.getElementById('tokenVerifyResult');
+            const token = localStorage.getItem('adminToken');
+            
+            if (!token) {
+                div.innerHTML = '<pre class="error">No token found in localStorage!</pre>';
+                return;
+            }
+
+            div.innerHTML = '<pre class="warning">Testing token verification...</pre>';
+            
+            try {
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/auth.php?action=verify`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                
+                div.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                div.innerHTML = `<pre class="error">Error: ${error.message}</pre>`;
+            }
+        }
+
+        async function testStatistics() {
+            const div = document.getElementById('statisticsResult');
+            const token = localStorage.getItem('adminToken');
+            
+            if (!token) {
+                div.innerHTML = '<pre class="error">No token found! Please login first.</pre>';
+                return;
+            }
+
+            div.innerHTML = '<pre class="warning">Fetching statistics...</pre>';
+            
+            try {
+                console.log('Calling:', `${API_CONFIG.BASE_URL}/admin/statistics.php`);
+                console.log('Token:', token);
+
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/statistics.php`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (data.success) {
+                    div.innerHTML = `<pre class="success">${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    div.innerHTML = `<pre class="error">${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                div.innerHTML = `<pre class="error">Error: ${error.message}\n${error.stack}</pre>`;
+            }
+        }
+
+        async function testApplications() {
+            const div = document.getElementById('applicationsResult');
+            const token = localStorage.getItem('adminToken');
+            
+            if (!token) {
+                div.innerHTML = '<pre class="error">No token found! Please login first.</pre>';
+                return;
+            }
+
+            div.innerHTML = '<pre class="warning">Fetching applications...</pre>';
+            
+            try {
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/applications.php?limit=5`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    div.innerHTML = `<pre class="success">${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    div.innerHTML = `<pre class="error">${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                div.innerHTML = `<pre class="error">Error: ${error.message}</pre>`;
+            }
+        }
+
+        async function testUsers() {
+            const div = document.getElementById('usersResult');
+            const token = localStorage.getItem('adminToken');
+            
+            if (!token) {
+                div.innerHTML = '<pre class="error">No token found! Please login first.</pre>';
+                return;
+            }
+
+            div.innerHTML = '<pre class="warning">Fetching users...</pre>';
+            
+            try {
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/users.php?limit=10`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    div.innerHTML = `<pre class="success">${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    div.innerHTML = `<pre class="error">${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                div.innerHTML = `<pre class="error">Error: ${error.message}</pre>`;
+            }
+        }
+
+        async function quickLogin() {
+            const div = document.getElementById('loginResult');
+            div.innerHTML = '<pre class="warning">Logging in...</pre>';
+            
+            try {
+                const response = await fetch(`${API_CONFIG.BASE_URL}/admin/auth.php?action=login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'admin123',
+                        remember: true
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.admin));
+                    div.innerHTML = `<pre class="success">Login successful!\n${JSON.stringify(data, null, 2)}</pre>`;
+                    displayLocalStorage();
+                } else {
+                    div.innerHTML = `<pre class="error">${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (error) {
+                div.innerHTML = `<pre class="error">Error: ${error.message}</pre>`;
+            }
+        }
+
+        // Initialize
+        displayLocalStorage();
+    </script>
+</body>
+</html>
