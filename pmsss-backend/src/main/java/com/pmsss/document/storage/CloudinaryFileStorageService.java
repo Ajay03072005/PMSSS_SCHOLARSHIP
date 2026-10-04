@@ -69,7 +69,7 @@ public class CloudinaryFileStorageService implements FileStorageService {
                 params.put("public_id", customFilename);
             }
 
-            Map uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
+            Map<?, ?> uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
 
             String publicId = (String) uploadResult.get("public_id");
             String url = (String) uploadResult.get("url");
@@ -134,7 +134,7 @@ public class CloudinaryFileStorageService implements FileStorageService {
             return localStorageService.delete(storageKey);
         }
         try {
-            Map result = cloudinary.uploader().destroy(storageKey, ObjectUtils.emptyMap());
+            Map<?, ?> result = cloudinary.uploader().destroy(storageKey, ObjectUtils.emptyMap());
             String resStr = (String) result.get("result");
             return "ok".equalsIgnoreCase(resStr);
         } catch (Exception e) {
