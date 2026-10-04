@@ -15,8 +15,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-@lombok.extern.slf4j.Slf4j
 public class GlobalExceptionHandler {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ApiResponse<Void>> handleBusinessException(BusinessException ex) {
@@ -75,6 +77,6 @@ public class GlobalExceptionHandler {
         log.error("Unhandled server exception: ", ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error(ex.getMessage() != null ? ex.getMessage() : "An unexpected server error occurred", "INTERNAL_SERVER_ERROR"));
+                .body(ApiResponse.error("An unexpected server error occurred", "INTERNAL_SERVER_ERROR"));
     }
 }

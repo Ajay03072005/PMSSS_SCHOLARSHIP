@@ -1,5 +1,6 @@
 package com.pmsss.auth.request;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -15,11 +16,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RegisterRequest {
 
+    @NotBlank(message = "First name is required")
     @Size(max = 100)
     private String firstName;
 
     private String middleName;
 
+    @NotBlank(message = "Last name is required")
     @Size(max = 100)
     private String lastName;
 
@@ -31,8 +34,11 @@ public class RegisterRequest {
 
     @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must be at least 8 characters")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).+$", message = "Password must contain upper, lower, numeric, and special characters")
     private String password;
 
+    @JsonAlias("mobileNumber")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must contain 10 digits")
     private String mobile;
     private String phone;
 
@@ -88,6 +94,24 @@ public class RegisterRequest {
         return mobile;
     }
 
+    public String getMiddleName() { return middleName; }
+    public void setMiddleName(String middleName) { this.middleName = middleName; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getAadhar() { return aadhar; }
+    public void setAadhar(String aadhar) { this.aadhar = aadhar; }
+
+    public LocalDate getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+
     private void populateFirstAndLastNameFromFullName() {
         if ((firstName == null || firstName.isBlank() || lastName == null || lastName.isBlank())
                 && fullName != null && !fullName.isBlank()) {
@@ -101,4 +125,5 @@ public class RegisterRequest {
         }
     }
 }
+
 

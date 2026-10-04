@@ -2,6 +2,7 @@ package com.pmsss.auth.controller;
 
 import com.pmsss.auth.request.LoginRequest;
 import com.pmsss.auth.request.RegisterRequest;
+import com.pmsss.auth.request.RefreshTokenRequest;
 import com.pmsss.auth.response.AuthResponse;
 import com.pmsss.auth.security.UserPrincipal;
 import com.pmsss.auth.service.AuthService;
@@ -36,6 +37,12 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.ok("Login successful", response));
     }
 
+    @PostMapping("/refresh")
+    @Operation(summary = "Rotate a refresh token and issue a new access token")
+    public ResponseEntity<ApiResponse<AuthResponse>> refresh(@Valid @RequestBody RefreshTokenRequest request) {
+        return ResponseEntity.ok(ApiResponse.ok("Token refreshed successfully", authService.refresh(request.getRefreshToken())));
+    }
+
     @GetMapping("/me")
     @Operation(summary = "Get current authenticated user profile")
     public ResponseEntity<ApiResponse<AuthResponse.UserDto>> getCurrentUser(
@@ -46,7 +53,8 @@ public class AuthController {
 
     @PostMapping("/logout")
     @Operation(summary = "Logout user")
-    public ResponseEntity<ApiResponse<Void>> logout() {
+    public ResponseEntity<ApiResponse<Void>> logout(@Valid @RequestBody RefreshTokenRequest request) {
+        authService.revokeRefreshToken(request.getRefreshToken());
         return ResponseEntity.ok(ApiResponse.ok("Logged out successfully", null));
     }
 }

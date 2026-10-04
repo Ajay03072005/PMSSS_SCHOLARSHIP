@@ -44,6 +44,9 @@ export const AuthProvider = ({ children }) => {
     setToken(jwtToken);
     setUser(userData);
     localStorage.setItem('pmsss_token', jwtToken);
+    if (payload.refreshToken) {
+      localStorage.setItem('pmsss_refresh_token', payload.refreshToken);
+    }
     localStorage.setItem('pmsss_user', JSON.stringify(userData));
     return userData;
   };
@@ -53,10 +56,19 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
-  const logout = () => {
+  const logout = async () => {
+    const refreshToken = localStorage.getItem('pmsss_refresh_token');
+    if (refreshToken) {
+      try {
+        await authApi.logout(refreshToken);
+      } catch {
+        // Clear local state even if the server is unavailable.
+      }
+    }
     setToken(null);
     setUser(null);
     localStorage.removeItem('pmsss_token');
+    localStorage.removeItem('pmsss_refresh_token');
     localStorage.removeItem('pmsss_user');
   };
 

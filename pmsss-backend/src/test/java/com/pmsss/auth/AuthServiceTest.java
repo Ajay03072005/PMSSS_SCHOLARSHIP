@@ -3,12 +3,14 @@ package com.pmsss.auth;
 import com.pmsss.auth.request.LoginRequest;
 import com.pmsss.auth.request.RegisterRequest;
 import com.pmsss.auth.response.AuthResponse;
+import com.pmsss.auth.repository.RefreshTokenRepository;
 import com.pmsss.auth.security.JwtTokenProvider;
 import com.pmsss.auth.service.AuthService;
 import com.pmsss.common.enums.RoleType;
 import com.pmsss.common.exception.BusinessException;
 import com.pmsss.user.entity.User;
 import com.pmsss.user.repository.UserRepository;
+import com.pmsss.student.repository.StudentProfileRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,6 +37,12 @@ public class AuthServiceTest {
 
     @Mock
     private JwtTokenProvider tokenProvider;
+
+    @Mock
+    private RefreshTokenRepository refreshTokenRepository;
+
+    @Mock
+    private StudentProfileRepository studentProfileRepository;
 
     @InjectMocks
     private AuthService authService;
@@ -75,7 +83,6 @@ public class AuthServiceTest {
         when(passwordEncoder.encode("Password@123")).thenReturn("encoded_pass");
         when(userRepository.save(any(User.class))).thenReturn(sampleUser);
         when(tokenProvider.generateTokenForUser(any(User.class))).thenReturn("jwt.token.mock");
-        when(tokenProvider.generateRefreshToken(any(User.class))).thenReturn("jwt.refresh.mock");
 
         AuthResponse response = authService.register(req);
 
@@ -107,7 +114,6 @@ public class AuthServiceTest {
         when(userRepository.findByEmail("ajay@pmsss.gov.in")).thenReturn(Optional.of(sampleUser));
         when(passwordEncoder.matches("Password@123", "encoded_pass")).thenReturn(true);
         when(tokenProvider.generateTokenForUser(sampleUser)).thenReturn("jwt.token.mock");
-        when(tokenProvider.generateRefreshToken(sampleUser)).thenReturn("jwt.refresh.mock");
 
         AuthResponse response = authService.login(req);
 
