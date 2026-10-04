@@ -1,5 +1,5 @@
 @echo off
-title PMSSS 2.0 Spring Boot Server - Port 8000
+title PMSSS 2.0 Spring Boot Server - Port 8081
 color 0B
 echo.
 echo ========================================================
@@ -7,9 +7,9 @@ echo   PMSSS 2.0 - AI-Powered Scholarship Management System
 echo   Spring Boot 3 Backend Server
 echo ========================================================
 echo.
-echo Server running on: http://localhost:8000
-echo Swagger UI:        http://localhost:8000/swagger-ui.html
-echo OpenAPI Docs:      http://localhost:8000/v3/api-docs
+echo Server running on: http://localhost:8081
+echo Swagger UI:        http://localhost:8081/swagger-ui.html
+echo OpenAPI Docs:      http://localhost:8081/v3/api-docs
 echo.
 echo Features:
 echo   - Spring Security with JWT (Student, SAG Officer, Finance, Admin)

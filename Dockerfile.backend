@@ -1,0 +1,15 @@
+FROM maven:3.9.14-eclipse-temurin-17 AS build
+WORKDIR /workspace
+COPY pmsss-backend/pom.xml pmsss-backend/pom.xml
+RUN mvn -f pmsss-backend/pom.xml dependency:go-offline -B
+COPY pmsss-backend/src pmsss-backend/src
+RUN mvn -f pmsss-backend/pom.xml clean package -DskipTests -B
+
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+RUN useradd --system --create-home spring
+COPY --from=build /workspace/pmsss-backend/target/pmsss-backend-*.jar app.jar
+RUN mkdir -p /app/uploads && chown -R spring:spring /app
+USER spring
+EXPOSE 8081
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-jar", "/app/app.jar"]

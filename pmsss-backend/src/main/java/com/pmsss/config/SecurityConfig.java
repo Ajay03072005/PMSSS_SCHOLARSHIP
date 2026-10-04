@@ -57,8 +57,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Preflight OPTIONS requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/api/health").permitAll()
                         // Public Auth Endpoints
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/api/v1/auth/refresh").permitAll()
                         // Public tracking, eligibility check & public chatbot endpoints
                         .requestMatchers(
                                 "/api/v1/applications/track/**",
