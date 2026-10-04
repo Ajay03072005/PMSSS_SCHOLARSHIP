@@ -4,6 +4,8 @@ server:
     context-path: /
 
 spring:
+  config:
+    import: optional:file:.env[.properties],optional:file:pmsss-backend/.env[.properties]
   application:
     name: pmsss-backend
   datasource:
