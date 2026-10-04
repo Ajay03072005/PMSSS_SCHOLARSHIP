@@ -13,8 +13,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
-@Slf4j
 public class JwtTokenProvider {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(JwtTokenProvider.class);
+
 
     private final SecretKey key;
     private final long jwtExpirationMs;

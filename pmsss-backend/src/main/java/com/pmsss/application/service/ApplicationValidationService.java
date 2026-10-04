@@ -21,22 +21,63 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class ApplicationValidationService {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ApplicationValidationService.class);
 
     private final ApplicationRepository applicationRepository;
     private final CorrectionRequestRepository correctionRequestRepository;
     private final EligibilityRuleRepository eligibilityRuleRepository;
     private final NotificationService notificationService;
 
-    @Data
-    @Builder
     public static class PreValidationResult {
         private boolean passed;
         private List<String> issues;
         private String evaluatedRuleCode;
         private boolean eligibilityPassed;
+
+        public PreValidationResult() {}
+
+        public PreValidationResult(boolean passed, List<String> issues, String evaluatedRuleCode, boolean eligibilityPassed) {
+            this.passed = passed;
+            this.issues = issues;
+            this.evaluatedRuleCode = evaluatedRuleCode;
+            this.eligibilityPassed = eligibilityPassed;
+        }
+
+        public boolean isPassed() { return passed; }
+        public void setPassed(boolean passed) { this.passed = passed; }
+
+        public List<String> getIssues() { return issues; }
+        public void setIssues(List<String> issues) { this.issues = issues; }
+
+        public String getEvaluatedRuleCode() { return evaluatedRuleCode; }
+        public void setEvaluatedRuleCode(String evaluatedRuleCode) { this.evaluatedRuleCode = evaluatedRuleCode; }
+
+        public boolean isEligibilityPassed() { return eligibilityPassed; }
+        public void setEligibilityPassed(boolean eligibilityPassed) { this.eligibilityPassed = eligibilityPassed; }
+
+        public static PreValidationResultBuilder builder() {
+            return new PreValidationResultBuilder();
+        }
+
+        public static class PreValidationResultBuilder {
+            private boolean passed;
+            private List<String> issues;
+            private String evaluatedRuleCode;
+            private boolean eligibilityPassed;
+
+            public PreValidationResultBuilder passed(boolean passed) { this.passed = passed; return this; }
+            public PreValidationResultBuilder issues(List<String> issues) { this.issues = issues; return this; }
+            public PreValidationResultBuilder evaluatedRuleCode(String evaluatedRuleCode) { this.evaluatedRuleCode = evaluatedRuleCode; return this; }
+            public PreValidationResultBuilder eligibilityPassed(boolean eligibilityPassed) { this.eligibilityPassed = eligibilityPassed; return this; }
+
+            public PreValidationResult build() {
+                return new PreValidationResult(passed, issues, evaluatedRuleCode, eligibilityPassed);
+            }
+        }
     }
+
 
     @Transactional
     public PreValidationResult performPreValidation(Application app) {

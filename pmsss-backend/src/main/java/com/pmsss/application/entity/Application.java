@@ -185,4 +185,149 @@ public class Application {
     public String getUniqueId() {
         return applicationId;
     }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public String getApplicationId() { return applicationId; }
+    public void setApplicationId(String applicationId) { this.applicationId = applicationId; }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getMiddleName() { return middleName; }
+    public void setMiddleName(String middleName) { this.middleName = middleName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public LocalDate getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+    public String getGender() { return gender; }
+    public void setGender(String gender) { this.gender = gender; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getAadhar() { return aadhar; }
+    public void setAadhar(String aadhar) { this.aadhar = aadhar; }
+
+    public String getMobile() { return mobile; }
+    public void setMobile(String mobile) { this.mobile = mobile; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+    public String getDistrict() { return district; }
+    public void setDistrict(String district) { this.district = district; }
+
+    public String getState() { return state; }
+    public void setState(String state) { this.state = state; }
+
+    public String getPincode() { return pincode; }
+    public void setPincode(String pincode) { this.pincode = pincode; }
+
+    public String getAcademicInfo() { return academicInfo; }
+    public void setAcademicInfo(String academicInfo) { this.academicInfo = academicInfo; }
+
+    public String getFatherName() { return fatherName; }
+    public void setFatherName(String fatherName) { this.fatherName = fatherName; }
+
+    public String getFatherOccupation() { return fatherOccupation; }
+    public void setFatherOccupation(String fatherOccupation) { this.fatherOccupation = fatherOccupation; }
+
+    public String getFatherMobile() { return fatherMobile; }
+    public void setFatherMobile(String fatherMobile) { this.fatherMobile = fatherMobile; }
+
+    public String getMotherName() { return motherName; }
+    public void setMotherName(String motherName) { this.motherName = motherName; }
+
+    public String getMotherOccupation() { return motherOccupation; }
+    public void setMotherOccupation(String motherOccupation) { this.motherOccupation = motherOccupation; }
+
+    public String getMotherMobile() { return motherMobile; }
+    public void setMotherMobile(String motherMobile) { this.motherMobile = motherMobile; }
+
+    public BigDecimal getAnnualIncome() { return annualIncome; }
+    public void setAnnualIncome(BigDecimal annualIncome) { this.annualIncome = annualIncome; }
+
+    public String getIncomeSource() { return incomeSource; }
+    public void setIncomeSource(String incomeSource) { this.incomeSource = incomeSource; }
+
+    public String getAccountHolderName() { return accountHolderName; }
+    public void setAccountHolderName(String accountHolderName) { this.accountHolderName = accountHolderName; }
+
+    public String getAccountNumber() { return accountNumber; }
+    public void setAccountNumber(String accountNumber) { this.accountNumber = accountNumber; }
+
+    public String getIfscCode() { return ifscCode; }
+    public void setIfscCode(String ifscCode) { this.ifscCode = ifscCode; }
+
+    public String getBankName() { return bankName; }
+    public void setBankName(String bankName) { this.bankName = bankName; }
+
+    public String getBranchName() { return branchName; }
+    public void setBranchName(String branchName) { this.branchName = branchName; }
+
+    public String getPhoto() { return photo; }
+    public void setPhoto(String photo) { this.photo = photo; }
+
+    public String getAadharDoc() { return aadharDoc; }
+    public void setAadharDoc(String aadharDoc) { this.aadharDoc = aadharDoc; }
+
+    public String getDomicile() { return domicile; }
+    public void setDomicile(String domicile) { this.domicile = domicile; }
+
+    public String getIncomeCert() { return incomeCert; }
+    public void setIncomeCert(String incomeCert) { this.incomeCert = incomeCert; }
+
+    public String getTenthMarksheet() { return tenthMarksheet; }
+    public void setTenthMarksheet(String tenthMarksheet) { this.tenthMarksheet = tenthMarksheet; }
+
+    public String getTwelfthMarksheet() { return twelfthMarksheet; }
+    public void setTwelfthMarksheet(String twelfthMarksheet) { this.twelfthMarksheet = twelfthMarksheet; }
+
+    public String getAdmissionLetter() { return admissionLetter; }
+    public void setAdmissionLetter(String admissionLetter) { this.admissionLetter = admissionLetter; }
+
+    public String getBankPassbook() { return bankPassbook; }
+    public void setBankPassbook(String bankPassbook) { this.bankPassbook = bankPassbook; }
+
+    public ApplicationStatus getStatus() { return status; }
+    public void setStatus(ApplicationStatus status) { this.status = status; }
+
+    public Boolean getDeclaration() { return declaration; }
+    public void setDeclaration(Boolean declaration) { this.declaration = declaration; }
+
+    public LocalDateTime getSubmittedAt() { return submittedAt; }
+    public void setSubmittedAt(LocalDateTime submittedAt) { this.submittedAt = submittedAt; }
+
+    public LocalDateTime getReviewedAt() { return reviewedAt; }
+    public void setReviewedAt(LocalDateTime reviewedAt) { this.reviewedAt = reviewedAt; }
+
+    public Long getReviewedBy() { return reviewedBy; }
+    public void setReviewedBy(Long reviewedBy) { this.reviewedBy = reviewedBy; }
+
+    public String getReviewRemarks() { return reviewRemarks; }
+    public void setReviewRemarks(String reviewRemarks) { this.reviewRemarks = reviewRemarks; }
+
+    public Integer getAiPriorityScore() { return aiPriorityScore; }
+    public void setAiPriorityScore(Integer aiPriorityScore) { this.aiPriorityScore = aiPriorityScore; }
+
+    public Boolean getHasAnomalies() { return hasAnomalies; }
+    public void setHasAnomalies(Boolean hasAnomalies) { this.hasAnomalies = hasAnomalies; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }
+

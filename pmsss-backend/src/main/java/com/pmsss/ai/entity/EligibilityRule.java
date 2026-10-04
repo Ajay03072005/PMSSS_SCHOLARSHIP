@@ -57,4 +57,37 @@ public class EligibilityRule {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getRuleCode() { return ruleCode; }
+    public void setRuleCode(String ruleCode) { this.ruleCode = ruleCode; }
+
+    public String getCourseType() { return courseType; }
+    public void setCourseType(String courseType) { this.courseType = courseType; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public Double getMinPercentage() { return minPercentage; }
+    public void setMinPercentage(Double minPercentage) { this.minPercentage = minPercentage; }
+
+    public BigDecimal getMaxAnnualIncome() { return maxAnnualIncome; }
+    public void setMaxAnnualIncome(BigDecimal maxAnnualIncome) { this.maxAnnualIncome = maxAnnualIncome; }
+
+    public Boolean getDomicileRequired() { return domicileRequired; }
+    public void setDomicileRequired(Boolean domicileRequired) { this.domicileRequired = domicileRequired; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public Boolean getIsActive() { return isActive; }
+    public void setIsActive(Boolean isActive) { this.isActive = isActive; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }
+

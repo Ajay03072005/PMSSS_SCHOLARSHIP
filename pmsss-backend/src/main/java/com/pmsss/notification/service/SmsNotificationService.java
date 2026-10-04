@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 public class SmsNotificationService {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SmsNotificationService.class);
 
     @Value("${pmsss.notification.sms.provider:MOCK}")
     private String smsProvider; // TWILIO, MSG91, AWS_SNS, MOCK

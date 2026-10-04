@@ -20,8 +20,10 @@ import java.util.Map;
 @Service
 @Primary
 @RequiredArgsConstructor
-@Slf4j
 public class CloudinaryFileStorageService implements FileStorageService {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CloudinaryFileStorageService.class);
+
 
     private final Cloudinary cloudinary;
     private final LocalFileStorageService localStorageService;

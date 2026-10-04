@@ -65,4 +65,120 @@ public class DocumentExtractedData {
     @CreationTimestamp
     @Column(name = "extraction_timestamp", updatable = false)
     private LocalDateTime extractionTimestamp;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Document getDocument() { return document; }
+    public void setDocument(Document document) { this.document = document; }
+
+    public Application getApplication() { return application; }
+    public void setApplication(Application application) { this.application = application; }
+
+    public String getExtractedName() { return extractedName; }
+    public void setExtractedName(String extractedName) { this.extractedName = extractedName; }
+
+    public LocalDate getExtractedDob() { return extractedDob; }
+    public void setExtractedDob(LocalDate extractedDob) { this.extractedDob = extractedDob; }
+
+    public String getCertificateNumber() { return certificateNumber; }
+    public void setCertificateNumber(String certificateNumber) { this.certificateNumber = certificateNumber; }
+
+    public String getInstitutionName() { return institutionName; }
+    public void setInstitutionName(String institutionName) { this.institutionName = institutionName; }
+
+    public String getCourseName() { return courseName; }
+    public void setCourseName(String courseName) { this.courseName = courseName; }
+
+    public BigDecimal getExtractedIncome() { return extractedIncome; }
+    public void setExtractedIncome(BigDecimal extractedIncome) { this.extractedIncome = extractedIncome; }
+
+    public LocalDate getDocumentDate() { return documentDate; }
+    public void setDocumentDate(LocalDate documentDate) { this.documentDate = documentDate; }
+
+    public String getIfscCode() { return ifscCode; }
+    public void setIfscCode(String ifscCode) { this.ifscCode = ifscCode; }
+
+    public String getBankAccountNumber() { return bankAccountNumber; }
+    public void setBankAccountNumber(String bankAccountNumber) { this.bankAccountNumber = bankAccountNumber; }
+
+    public String getRawExtractedText() { return rawExtractedText; }
+    public void setRawExtractedText(String rawExtractedText) { this.rawExtractedText = rawExtractedText; }
+
+    public Double getConfidenceScore() { return confidenceScore; }
+    public void setConfidenceScore(Double confidenceScore) { this.confidenceScore = confidenceScore; }
+
+    public String getExtractionSource() { return extractionSource; }
+    public void setExtractionSource(String extractionSource) { this.extractionSource = extractionSource; }
+
+    public String getConsistencyStatus() { return consistencyStatus; }
+    public void setConsistencyStatus(String consistencyStatus) { this.consistencyStatus = consistencyStatus; }
+
+    public String getConsistencyNotes() { return consistencyNotes; }
+    public void setConsistencyNotes(String consistencyNotes) { this.consistencyNotes = consistencyNotes; }
+
+    public static DocumentExtractedDataBuilder builder() {
+        return new DocumentExtractedDataBuilder();
+    }
+
+    public static class DocumentExtractedDataBuilder {
+        private Long id;
+        private Document document;
+        private Application application;
+        private String extractedName;
+        private LocalDate extractedDob;
+        private String certificateNumber;
+        private String institutionName;
+        private String courseName;
+        private BigDecimal extractedIncome;
+        private LocalDate documentDate;
+        private String ifscCode;
+        private String bankAccountNumber;
+        private String rawExtractedText;
+        private Double confidenceScore;
+        private String extractionSource;
+        private String consistencyStatus;
+        private String consistencyNotes;
+
+        public DocumentExtractedDataBuilder id(Long id) { this.id = id; return this; }
+        public DocumentExtractedDataBuilder document(Document document) { this.document = document; return this; }
+        public DocumentExtractedDataBuilder application(Application application) { this.application = application; return this; }
+        public DocumentExtractedDataBuilder extractedName(String extractedName) { this.extractedName = extractedName; return this; }
+        public DocumentExtractedDataBuilder extractedDob(LocalDate extractedDob) { this.extractedDob = extractedDob; return this; }
+        public DocumentExtractedDataBuilder certificateNumber(String certificateNumber) { this.certificateNumber = certificateNumber; return this; }
+        public DocumentExtractedDataBuilder institutionName(String institutionName) { this.institutionName = institutionName; return this; }
+        public DocumentExtractedDataBuilder courseName(String courseName) { this.courseName = courseName; return this; }
+        public DocumentExtractedDataBuilder extractedIncome(BigDecimal extractedIncome) { this.extractedIncome = extractedIncome; return this; }
+        public DocumentExtractedDataBuilder documentDate(LocalDate documentDate) { this.documentDate = documentDate; return this; }
+        public DocumentExtractedDataBuilder ifscCode(String ifscCode) { this.ifscCode = ifscCode; return this; }
+        public DocumentExtractedDataBuilder bankAccountNumber(String bankAccountNumber) { this.bankAccountNumber = bankAccountNumber; return this; }
+        public DocumentExtractedDataBuilder rawExtractedText(String rawExtractedText) { this.rawExtractedText = rawExtractedText; return this; }
+        public DocumentExtractedDataBuilder confidenceScore(Double confidenceScore) { this.confidenceScore = confidenceScore; return this; }
+        public DocumentExtractedDataBuilder extractionSource(String extractionSource) { this.extractionSource = extractionSource; return this; }
+        public DocumentExtractedDataBuilder consistencyStatus(String consistencyStatus) { this.consistencyStatus = consistencyStatus; return this; }
+        public DocumentExtractedDataBuilder consistencyNotes(String consistencyNotes) { this.consistencyNotes = consistencyNotes; return this; }
+
+        public DocumentExtractedData build() {
+            DocumentExtractedData d = new DocumentExtractedData();
+            d.id = this.id;
+            d.document = this.document;
+            d.application = this.application;
+            d.extractedName = this.extractedName;
+            d.extractedDob = this.extractedDob;
+            d.certificateNumber = this.certificateNumber;
+            d.institutionName = this.institutionName;
+            d.courseName = this.courseName;
+            d.extractedIncome = this.extractedIncome;
+            d.documentDate = this.documentDate;
+            d.ifscCode = this.ifscCode;
+            d.bankAccountNumber = this.bankAccountNumber;
+            d.rawExtractedText = this.rawExtractedText;
+            d.confidenceScore = this.confidenceScore;
+            d.extractionSource = this.extractionSource;
+            d.consistencyStatus = this.consistencyStatus;
+            d.consistencyNotes = this.consistencyNotes;
+            return d;
+        }
+    }
 }
+
+

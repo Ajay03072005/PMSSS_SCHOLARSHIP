@@ -16,8 +16,10 @@ import java.nio.file.*;
 import java.util.UUID;
 
 @Service
-@Slf4j
 public class LocalFileStorageService implements FileStorageService {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LocalFileStorageService.class);
+
 
     @Value("${app.upload.dir:uploads}")
     private String baseUploadDir;

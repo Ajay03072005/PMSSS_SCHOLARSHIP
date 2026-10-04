@@ -1,0 +1,21 @@
+USE pmsss;
+
+CREATE INDEX idx_districts_state ON districts (state_id);
+CREATE INDEX idx_colleges_state_district ON colleges (state_id, district_id);
+CREATE INDEX idx_students_email ON students (email);
+CREATE INDEX idx_students_mobile ON students (mobile_number);
+CREATE INDEX idx_addresses_student_type ON student_addresses (student_id, address_type);
+CREATE INDEX idx_academic_student_qualification ON student_academic_details (student_id, qualification);
+CREATE INDEX idx_applications_student ON applications (student_id);
+CREATE INDEX idx_applications_status ON applications (current_status);
+CREATE INDEX idx_applications_college_year ON applications (college_id, academic_year_id);
+CREATE INDEX idx_applications_officer_status ON applications (current_officer_id, current_status);
+CREATE INDEX idx_documents_application_type ON application_documents (application_id, document_type_id);
+CREATE INDEX idx_documents_statuses ON application_documents (upload_status, ocr_status, verification_status);
+CREATE INDEX idx_ocr_results_document ON ocr_results (document_id, processing_status);
+CREATE INDEX idx_verifications_application_level ON application_verifications (application_id, verification_level);
+CREATE INDEX idx_corrections_application_status ON correction_requests (application_id, status);
+CREATE INDEX idx_assignments_officer_status ON application_assignments (officer_id, status);
+CREATE INDEX idx_status_history_application_time ON application_status_history (application_id, changed_at);
+CREATE INDEX idx_notifications_user_read ON notifications (user_id, read_status, created_at);
+CREATE INDEX idx_audit_entity ON audit_logs (entity_name, entity_id, created_at);

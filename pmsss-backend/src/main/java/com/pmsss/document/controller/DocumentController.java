@@ -28,6 +28,10 @@ import java.util.Map;
 public class DocumentController {
 
     private final DocumentService documentService;
+    private final com.pmsss.document.service.DocumentExtractionService extractionService;
+    private final com.pmsss.document.service.DocumentMatchingService matchingService;
+    private final com.pmsss.document.service.DocumentVerificationService verificationService;
+    private final com.pmsss.document.service.AIAnalysisLogService aiAnalysisLogService;
 
     @PostMapping(value = "/documents/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Upload a document to Cloudinary storage for an application")
@@ -54,19 +58,6 @@ public class DocumentController {
         data.put("storageProvider", document.getStorageProvider());
 
         return ResponseEntity.ok(ApiResponse.ok("Document uploaded successfully", data));
-    }
-
-    @PostMapping(value = "/documents/upload/{applicationId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Legacy endpoint: Upload a document for an application ID")
-    public ResponseEntity<ApiResponse<Document>> uploadDocumentLegacyPath(
-            @PathVariable String applicationId,
-            @RequestParam("documentType") String documentTypeStr,
-            @RequestPart("file") MultipartFile file,
-            @AuthenticationPrincipal UserPrincipal currentUser) {
-
-        DocumentType docType = DocumentType.fromString(documentTypeStr);
-        Document document = documentService.uploadDocument(applicationId, docType, file, currentUser);
-        return ResponseEntity.ok(ApiResponse.ok("Document uploaded successfully", document));
     }
 
     @PutMapping(value = "/documents/{documentUniqueId}/replace", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -154,20 +145,51 @@ public class DocumentController {
         return ResponseEntity.ok(ApiResponse.ok("Documents retrieved", list));
     }
 
-    @GetMapping("/documents/application/{applicationId}")
-    @Operation(summary = "Legacy endpoint: Get all documents belonging to an application ID")
-    public ResponseEntity<ApiResponse<List<Document>>> getDocumentsForApplicationLegacy(
-            @PathVariable String applicationId,
+    @GetMapping("/documents/{documentUniqueId}/extraction")
+    @Operation(summary = "Get OCR extraction results stored in document_extractions table")
+    public ResponseEntity<ApiResponse<com.pmsss.document.entity.DocumentExtraction>> getDocumentExtraction(
+            @PathVariable String documentUniqueId,
             @AuthenticationPrincipal UserPrincipal currentUser) {
 
-        List<Document> list = documentService.getDocumentsForApplication(applicationId, currentUser);
-        return ResponseEntity.ok(ApiResponse.ok("Documents retrieved", list));
+        Document doc = documentService.getDocumentByUniqueId(documentUniqueId);
+        documentService.verifyUserAccessToApplication(doc.getApplication(), currentUser);
+        com.pmsss.document.entity.DocumentExtraction extraction = extractionService.getExtractionForDocument(doc.getId());
+        return ResponseEntity.ok(ApiResponse.ok("Extraction result retrieved", extraction));
     }
 
-    @GetMapping("/documents/{documentId}/extracted-data")
-    @Operation(summary = "Get OCR extracted structured data for a document")
-    public ResponseEntity<ApiResponse<DocumentExtractedData>> getExtractedData(@PathVariable Long documentId) {
-        DocumentExtractedData data = documentService.getExtractedDataForDocument(documentId);
-        return ResponseEntity.ok(ApiResponse.ok("Extracted data retrieved", data));
+    @GetMapping("/documents/{documentUniqueId}/match-results")
+    @Operation(summary = "Get application vs OCR field match results from document_match_results table")
+    public ResponseEntity<ApiResponse<List<com.pmsss.document.entity.DocumentMatchResult>>> getMatchResults(
+            @PathVariable String documentUniqueId,
+            @AuthenticationPrincipal UserPrincipal currentUser) {
+
+        Document doc = documentService.getDocumentByUniqueId(documentUniqueId);
+        documentService.verifyUserAccessToApplication(doc.getApplication(), currentUser);
+        List<com.pmsss.document.entity.DocumentMatchResult> matchResults = matchingService.getMatchResultsForDocument(doc.getId());
+        return ResponseEntity.ok(ApiResponse.ok("Match results retrieved", matchResults));
+    }
+
+    @GetMapping("/documents/{documentUniqueId}/verification")
+    @Operation(summary = "Get document verification record from document_verifications table")
+    public ResponseEntity<ApiResponse<com.pmsss.document.entity.DocumentVerification>> getVerification(
+            @PathVariable String documentUniqueId,
+            @AuthenticationPrincipal UserPrincipal currentUser) {
+
+        Document doc = documentService.getDocumentByUniqueId(documentUniqueId);
+        documentService.verifyUserAccessToApplication(doc.getApplication(), currentUser);
+        com.pmsss.document.entity.DocumentVerification verification = verificationService.getLatestVerificationForDocument(doc.getId());
+        return ResponseEntity.ok(ApiResponse.ok("Verification record retrieved", verification));
+    }
+
+    @GetMapping("/documents/{documentUniqueId}/analysis-logs")
+    @Operation(summary = "Get AI/OCR audit logs from ai_analysis_logs table")
+    public ResponseEntity<ApiResponse<List<com.pmsss.document.entity.AiAnalysisLog>>> getAnalysisLogs(
+            @PathVariable String documentUniqueId,
+            @AuthenticationPrincipal UserPrincipal currentUser) {
+
+        Document doc = documentService.getDocumentByUniqueId(documentUniqueId);
+        documentService.verifyUserAccessToApplication(doc.getApplication(), currentUser);
+        List<com.pmsss.document.entity.AiAnalysisLog> logs = aiAnalysisLogService.getLogsForDocument(doc.getId());
+        return ResponseEntity.ok(ApiResponse.ok("Analysis logs retrieved", logs));
     }
 }

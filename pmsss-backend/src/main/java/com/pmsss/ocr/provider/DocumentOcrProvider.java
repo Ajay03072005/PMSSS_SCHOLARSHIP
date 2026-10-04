@@ -11,6 +11,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -94,7 +95,56 @@ public class DocumentOcrProvider {
         // Detect Document Type Heuristically
         builder.detectedDocumentType(classifyText(text, file.getName()));
 
-        return builder.build();
+        OcrExtractedData result = builder.build();
+
+        // Filename OCR Heuristic Fallback when document text is empty/scanned
+        if (result.getName() == null || result.getName().isBlank()) {
+            result.setName(parseNameFromFileName(file.getName()));
+        }
+
+        if (result.getCertificateNumber() == null || result.getCertificateNumber().isBlank()) {
+            result.setCertificateNumber(parseCertNoFromFileName(file.getName()));
+        }
+
+        return result;
+    }
+
+    private String parseNameFromFileName(String fileName) {
+        if (fileName == null) return null;
+        String nameWithoutExt = fileName.replaceAll("(?i)^ocr_\\d+_", "").replaceAll("(?i)\\.(pdf|jpg|jpeg|png)$", "");
+        String[] tokens = nameWithoutExt.split("[-_\\s]+");
+
+        Set<String> ignoreKeywords = Set.of(
+                "INCOME", "CERT", "CERTIFICATE", "DOMICILE", "MARKSHEET", "AADHAR", "AADHAAR",
+                "PASSBOOK", "BANK", "ADMISSION", "LETTER", "PHOTO", "DOC", "DOCUMENT", "PDF", "JPG", "PNG", "IT", "JK", "OCR"
+        );
+
+        List<String> nameTokens = new ArrayList<>();
+        for (String token : tokens) {
+            String cleanToken = token.trim();
+            if (cleanToken.matches("^[0-9]+$")) continue; // Skip pure numeric IDs/roll numbers
+            if (ignoreKeywords.contains(cleanToken.toUpperCase())) continue; // Skip document type keywords
+            if (cleanToken.length() >= 2) {
+                nameTokens.add(cleanToken);
+            }
+        }
+
+        return nameTokens.isEmpty() ? null : String.join(" ", nameTokens);
+    }
+
+    private String parseCertNoFromFileName(String fileName) {
+        if (fileName == null) return null;
+        String nameWithoutExt = fileName.replaceAll("(?i)^ocr_\\d+_", "").replaceAll("(?i)\\.(pdf|jpg|jpeg|png)$", "");
+        String[] tokens = nameWithoutExt.split("[-_\\s]+");
+
+        for (String token : tokens) {
+            String cleanToken = token.trim();
+            // Look for token that contains digits and length >= 4 (e.g., 230273 or JKB2025)
+            if (cleanToken.matches(".*\\d.*") && cleanToken.length() >= 4) {
+                return cleanToken;
+            }
+        }
+        return null;
     }
 
     public String classifyText(String text, String fileName) {

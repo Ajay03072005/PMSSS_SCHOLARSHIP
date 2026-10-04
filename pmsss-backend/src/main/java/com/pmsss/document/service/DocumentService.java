@@ -8,19 +8,15 @@ import com.pmsss.common.enums.DocumentStatus;
 import com.pmsss.common.enums.DocumentType;
 import com.pmsss.common.exception.BusinessException;
 import com.pmsss.common.exception.ResourceNotFoundException;
-import com.pmsss.document.entity.Document;
-import com.pmsss.document.entity.DocumentExtractedData;
-import com.pmsss.document.repository.DocumentExtractedDataRepository;
-import com.pmsss.document.repository.DocumentRepository;
-import com.pmsss.document.storage.FileStorageService;
-import com.pmsss.document.storage.FileUploadResponse;
+import com.pmsss.document.entity.*;
+import com.pmsss.document.repository.*;
+import com.pmsss.document.storage.*;
 import com.pmsss.notification.service.NotificationService;
 import com.pmsss.ocr.model.OcrExtractedData;
 import com.pmsss.ocr.service.OcrService;
 import com.pmsss.user.entity.User;
 import com.pmsss.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -37,15 +33,25 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class DocumentService {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(DocumentService.class);
+
 
     private final DocumentRepository documentRepository;
     private final DocumentExtractedDataRepository extractedDataRepository;
+    private final DocumentExtractionRepository extractionRepository;
+    private final DocumentMatchResultRepository matchResultRepository;
+    private final DocumentVerificationRepository verificationRepository;
+    private final AiAnalysisLogRepository aiAnalysisLogRepository;
     private final ApplicationRepository applicationRepository;
     private final UserRepository userRepository;
     private final FileStorageService fileStorageService;
     private final OcrService ocrService;
+    private final DocumentExtractionService extractionService;
+    private final DocumentMatchingService matchingService;
+    private final DocumentVerificationService verificationService;
+    private final AIAnalysisLogService aiAnalysisLogService;
     private final NotificationService notificationService;
     private final AuditLogService auditLogService;
 
@@ -61,7 +67,7 @@ public class DocumentService {
 
     @Transactional
     public Document uploadDocument(String appIdentifier, DocumentType docType, MultipartFile file, UserPrincipal currentUser) {
-        Application application = resolveApplication(appIdentifier);
+        Application application = resolveApplication(appIdentifier, currentUser);
         verifyUserAccessToApplication(application, currentUser);
 
         validateFile(file);
@@ -284,9 +290,13 @@ public class DocumentService {
         // Delete from Storage
         fileStorageService.delete(document.getStorageKey());
 
-        // Delete extracted OCR metadata if present
+        // Delete associated OCR & verification records
         extractedDataRepository.findByDocumentId(document.getId())
                 .ifPresent(extractedDataRepository::delete);
+        extractionRepository.deleteByDocumentId(document.getId());
+        matchResultRepository.deleteByDocumentId(document.getId());
+        verificationRepository.deleteByDocumentId(document.getId());
+        aiAnalysisLogRepository.deleteByDocumentId(document.getId());
 
         // Delete metadata
         documentRepository.delete(document);
@@ -306,7 +316,7 @@ public class DocumentService {
 
     @Transactional(readOnly = true)
     public List<Document> getDocumentsForApplication(String appIdentifier, UserPrincipal currentUser) {
-        Application application = resolveApplication(appIdentifier);
+        Application application = resolveApplication(appIdentifier, currentUser);
         verifyUserAccessToApplication(application, currentUser);
         return documentRepository.findByApplicationId(application.getId());
     }
@@ -316,15 +326,42 @@ public class DocumentService {
         return extractedDataRepository.findByDocumentId(documentId).orElse(null);
     }
 
-    private Application resolveApplication(String identifier) {
+    private Application resolveApplication(String identifier, UserPrincipal currentUser) {
+        if (identifier == null 
+            || identifier.trim().isEmpty() 
+            || "null".equalsIgnoreCase(identifier.trim()) 
+            || "undefined".equalsIgnoreCase(identifier.trim())
+            || "my".equalsIgnoreCase(identifier.trim())
+            || "me".equalsIgnoreCase(identifier.trim())) {
+            
+            if (currentUser != null) {
+                List<Application> apps = applicationRepository.findByUserIdOrderByCreatedAtDesc(currentUser.getId());
+                if (!apps.isEmpty()) {
+                    return apps.get(0);
+                }
+            }
+            throw new ResourceNotFoundException("Application not found. Please create or submit an application first.");
+        }
         try {
             Long id = Long.parseLong(identifier);
             return applicationRepository.findById(id)
                     .orElseGet(() -> applicationRepository.findByUniqueId(identifier)
-                            .orElseThrow(() -> new ResourceNotFoundException("Application", "identifier", identifier)));
+                            .orElseGet(() -> {
+                                if (currentUser != null) {
+                                    List<Application> apps = applicationRepository.findByUserIdOrderByCreatedAtDesc(currentUser.getId());
+                                    if (!apps.isEmpty()) return apps.get(0);
+                                }
+                                throw new ResourceNotFoundException("Application", "identifier", identifier);
+                            }));
         } catch (NumberFormatException e) {
             return applicationRepository.findByUniqueId(identifier)
-                    .orElseThrow(() -> new ResourceNotFoundException("Application", "uniqueId", identifier));
+                    .orElseGet(() -> {
+                        if (currentUser != null) {
+                            List<Application> apps = applicationRepository.findByUserIdOrderByCreatedAtDesc(currentUser.getId());
+                            if (!apps.isEmpty()) return apps.get(0);
+                        }
+                        throw new ResourceNotFoundException("Application", "uniqueId", identifier);
+                    });
         }
     }
 
@@ -347,10 +384,12 @@ public class DocumentService {
     }
 
     private void processOcrAndMatching(Document document, Application application, DocumentType docType, MultipartFile file) {
+        long startTime = System.currentTimeMillis();
         try {
             Path tempFile = Files.createTempFile("ocr_", "_" + file.getOriginalFilename());
             file.transferTo(tempFile.toFile());
 
+            // 1. Perform OCR extraction
             OcrExtractedData ocrResult = ocrService.extractDocumentData(tempFile.toFile(), docType.name());
 
             String detectedType = ocrResult.getDetectedDocumentType();
@@ -363,7 +402,31 @@ public class DocumentService {
                 document.setAiTypeMatch(true);
             }
 
-            DocumentExtractedData extractedData = DocumentExtractedData.builder()
+            // 2. Save DocumentExtraction (document_extractions table)
+            DocumentExtraction extraction = extractionService.processAndSaveExtraction(document, ocrResult);
+
+            // 3. Perform Field Matching & Save DocumentMatchResult (document_match_results table)
+            List<DocumentMatchResult> matchResults = matchingService.matchDocumentWithApplication(document, application, extraction);
+
+            // 4. Perform AI-assisted Verification & Save DocumentVerification (document_verifications table)
+            DocumentVerification verification = verificationService.evaluateAndCreateVerification(document, extraction, matchResults);
+
+            long duration = System.currentTimeMillis() - startTime;
+
+            // 5. Log AI Analysis Audit (ai_analysis_logs table)
+            aiAnalysisLogService.logOperation(
+                    document,
+                    application,
+                    "OCR_EXTRACTION",
+                    ocrResult.getSource(),
+                    extraction.getExtractionStatus(),
+                    ocrResult.getConfidence(),
+                    duration,
+                    null
+            );
+
+            // Also keep legacy DocumentExtractedData entity updated for backward compatibility
+            DocumentExtractedData legacyExt = DocumentExtractedData.builder()
                     .document(document)
                     .application(application)
                     .extractedName(ocrResult.getName())
@@ -378,13 +441,26 @@ public class DocumentService {
                     .rawExtractedText(ocrResult.getRawText())
                     .confidenceScore(ocrResult.getConfidence())
                     .extractionSource(ocrResult.getSource())
+                    .consistencyStatus(verification.getVerificationStatus())
+                    .consistencyNotes(verification.getVerificationNotes())
                     .build();
 
-            extractedDataRepository.save(extractedData);
+            extractedDataRepository.save(legacyExt);
             Files.deleteIfExists(tempFile);
 
         } catch (Exception e) {
+            long duration = System.currentTimeMillis() - startTime;
             log.warn("OCR extraction skipped or failed for document {}: {}", document.getUniqueId(), e.getMessage());
+            aiAnalysisLogService.logOperation(
+                    document,
+                    application,
+                    "OCR_EXTRACTION",
+                    "OCR_ENGINE_FAILURE",
+                    "FAILED",
+                    0.0,
+                    duration,
+                    e.getMessage()
+            );
         }
     }
 

@@ -49,4 +49,71 @@ public class CorrectionRequest {
 
     @Column(name = "resolved_at")
     private LocalDateTime resolvedAt;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getApplicationId() { return applicationId; }
+    public void setApplicationId(String applicationId) { this.applicationId = applicationId; }
+
+    public String getDocumentType() { return documentType; }
+    public void setDocumentType(String documentType) { this.documentType = documentType; }
+
+    public String getFieldKey() { return fieldKey; }
+    public void setFieldKey(String fieldKey) { this.fieldKey = fieldKey; }
+
+    public String getReason() { return reason; }
+    public void setReason(String reason) { this.reason = reason; }
+
+    public String getRequestedBy() { return requestedBy; }
+    public void setRequestedBy(String requestedBy) { this.requestedBy = requestedBy; }
+
+    public LocalDateTime getRequestedAt() { return requestedAt; }
+    public void setRequestedAt(LocalDateTime requestedAt) { this.requestedAt = requestedAt; }
+
+    public Boolean getIsResolved() { return isResolved; }
+    public void setIsResolved(Boolean isResolved) { this.isResolved = isResolved; }
+
+    public LocalDateTime getResolvedAt() { return resolvedAt; }
+    public void setResolvedAt(LocalDateTime resolvedAt) { this.resolvedAt = resolvedAt; }
+
+    public static CorrectionRequestBuilder builder() {
+        return new CorrectionRequestBuilder();
+    }
+
+    public static class CorrectionRequestBuilder {
+        private Long id;
+        private String applicationId;
+        private String documentType;
+        private String fieldKey;
+        private String reason;
+        private String requestedBy;
+        private LocalDateTime requestedAt;
+        private Boolean isResolved = false;
+        private LocalDateTime resolvedAt;
+
+        public CorrectionRequestBuilder id(Long id) { this.id = id; return this; }
+        public CorrectionRequestBuilder applicationId(String applicationId) { this.applicationId = applicationId; return this; }
+        public CorrectionRequestBuilder documentType(String documentType) { this.documentType = documentType; return this; }
+        public CorrectionRequestBuilder fieldKey(String fieldKey) { this.fieldKey = fieldKey; return this; }
+        public CorrectionRequestBuilder reason(String reason) { this.reason = reason; return this; }
+        public CorrectionRequestBuilder requestedBy(String requestedBy) { this.requestedBy = requestedBy; return this; }
+        public CorrectionRequestBuilder requestedAt(LocalDateTime requestedAt) { this.requestedAt = requestedAt; return this; }
+        public CorrectionRequestBuilder isResolved(Boolean isResolved) { this.isResolved = isResolved; return this; }
+        public CorrectionRequestBuilder resolvedAt(LocalDateTime resolvedAt) { this.resolvedAt = resolvedAt; return this; }
+
+        public CorrectionRequest build() {
+            CorrectionRequest cr = new CorrectionRequest();
+            cr.id = this.id;
+            cr.applicationId = this.applicationId;
+            cr.documentType = this.documentType;
+            cr.fieldKey = this.fieldKey;
+            cr.reason = this.reason;
+            cr.requestedBy = this.requestedBy;
+            cr.requestedAt = this.requestedAt;
+            cr.isResolved = this.isResolved;
+            cr.resolvedAt = this.resolvedAt;
+            return cr;
+        }
+    }
 }
+
